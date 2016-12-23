@@ -1,16 +1,79 @@
 <template>
-  <div id="app">
-    <home></home>
-  </div>
+    <div class="container-fluid" id="content" tabindex="-1">
+      <header class="container">
+        <div class="row">
+          <div class="col-md-6">
+            <router-link to="/home">
+              <img src="/static/logo.png" width="200px" style="margin-bottom: 15px" />
+            </router-link>
+          </div>
+          <div class="col-md-6 text-right USAIDLogo">
+            <a href="https://www.usaid.gov" class=""><img src="https://www.usaid.gov/sites/all/themes/usaid/logo.png" alt="U.S. Agency for International Development"></a>
+          </div>
+        </div>
+      </header>
+      <div class="row">
+        <div class="col-md-12 topnav">
+          <topnav></topnav>
+        </div>
+      </div>
+      <div class="row">
+        <router-view></router-view>
+      </div>
+      <footer>
+        <div class="row">
+          <div class="col-md-12 footerbar">
+          </div>
+        </div>	
+        <div class="row">
+          <div class="col-md-12 footerlinks">
+            <div class="container">
+              <div class="row">
+                <div class="col-md-4 ">
+                  <div class="footerlinkgroup">
+                    <a class="heading" href="#"><i class="glyphicon glyphicon-home"></i> Home</a> 
+                  </div>
+                  <div class="footerlinkgroup">
+                    <a class="heading" href="#">About POPs</a> 
+                  </div>
+                  <div class="footerlinkgroup">
+                    <a class="heading" href="#">Site Prioritization for Risk Assessment</a> 
+                  </div>
+                </div>
+                <div class="col-md-4 ">
+                  <div class="footerlinkgroup">
+                    <a class="heading" href="#">Field Sampling Procedures</a> 
+                  </div>
+                  <div class="footerlinkgroup">
+                    <a class="heading" href="#">Human Health Risk Assessment</a> 
+                  </div>
+                  <div class="footerlinkgroup">
+                    <a class="heading" href="#">Risk Management</a> 
+                  </div>
+                </div>
+                <div class="col-md-4 ">
+                  <div class="footermeta">
+                    <p>The information provided on this Web site is not official U.S. Government information and does not represent the views or positions of the U.S. Agency for International Development or the U.S. Government.</p>
+                    <p><a href="#">Privacy Policy</a></p>
+                  </div>
+                </div>
+              </div>				
+            </div>
+          </div>
+        </div>	
+      </footer>
+    </div>
 </template>
 
 <script>
 import home from './components/home'
+import topnav from './components/topnav'
 
 export default {
   name: 'app',
   components: {
-    home
+    home,
+    topnav
   }
 }
 </script>

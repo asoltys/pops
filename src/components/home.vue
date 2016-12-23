@@ -21,6 +21,8 @@
         <p>
         Risk assessment is an iterative process leading to the quantification of potential risk. For the POPs tookit, the emphasis is on assessing health risks to humans resulting from exposure to persistent organic chemicals (although other hazardous chemicals can be analyzed in a similar fashion). The assessment looks at multiple exposure scenarios and calculates the incremental risks associated with each scenario, as well as the overall risk attributable to all the scenarios combined.
         </p>
+        <iframe width="100%" height="400" marginheight="0" marginwidth="0" frameBorder="0" src="/static/slides.html">
+        </iframe>
         <p>
         Information provided by risk assessments is needed before appropriate risk management measures can be selected and implemented.
         </p>
@@ -34,11 +36,6 @@
 
 <script>
 export default {
-  name: 'home',
-  data () {
-    return {
-      msg: 'Welcome to Your Vue.js App'
-    }
-  }
+  name: 'home'
 }
 </script>

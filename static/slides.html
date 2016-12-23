@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>POPsToolkit Template</title>
+
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.3.0/css/reveal.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.3.0/css/theme/white.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/headjs/0.96/head.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.3.0/js/reveal.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.3.0/js/reveal.min.js"></script>
+    <style>
+      .toc div {
+        width: 1250px;
+      }
+
+      .toc div div {
+        height: 180px;
+        width: 300px;
+        float: left;
+        margin: 5px;
+        padding: 10px;
+        border-radius: 10px;
+        color: white;
+      }
+    </style>
+    <script>
+      $(function() {
+        Reveal.initialize({
+          controls: false,
+          progress: false,
+          history: true,
+          center: false,
+          loop: true,
+          slideNumber: 'h.v'
+        })
+        $('.toc div div').click(function() {
+          var url = location.href;
+          var scrollTop = $(window.parent.document).scrollTop();
+          location.href = "#" + $(this).attr('id') + "_slide";
+          window.parent.scrollTo(0, scrollTop);
+        });
+      })
+    </script>
+    <meta charset="utf-8">
+  </head>
+  <body>
+    <div class="reveal">
+      <div class="slides">
+        <section class="toc">
+          <section>
+            <div style="margin-left: -200px">
+              <div id="pf" style="background: #8064a2; cursor: pointer;">Problem Formulation</div>
+              <div id="ea" style="background: #8064a2; cursor: pointer;">Exposure Assessment</div>
+              <div id="ta" style="background: #8064a2; cursor: pointer;">Toxicity Assessment</div>
+              <div id="rc" style="background: #8064a2; cursor: pointer;">Risk Characterization</div>
+            </div>
+            <div>
+              <div style="background: #b3a2c7; width: 550px; height: 500px">
+                <ul>
+                  <li>Develop Conceptual Site Model</li>
+                  <li>Identify Receptors/Pathways of Concern</li>
+                  <li>Select Assessment/Measurement Endpoints (Ecological Only)</li>
+                  <li>Identify Chemicals of Potential Concern</li>
+                </ul>
+              </div>
+              <div style="background: #f79646;">Develop Risk-Based PRGs</div>
+            </div>
+          </section>
+          <section id="pf_slide">
+            <h1>Problem Formulation</h1>
+          </section>
+          <section>
+            <h3>Problem Formulation</h3>
+            <p>
+            Risk assessments start off very simple, using a minimum of data, making simple assumptions and using simple calculations. At this initial stage, all assumptions should err on the side of caution. If the earliest iterations of the risk assessment predicts elevated risk, it doesn't necessarily mean that there is elevated risk, but additional work needs to be done to refine the risk assessment. In Canada, the earliest iteration is called a Preliminary Quantitative Risk Assessment (PQRA) (Health Canada 2004). Subsequent refinements are often called Detailed Site-Specific Risk Assessments.
+            </p>
+          </section>
+          <section id="ea_slide">
+            <h1>Exposure Assessment</h1>
+          </section>
+          <section>
+            <h3>Exposure Assessment</h3>
+            <p>
+            Risk assessments start off very simple, using a minimum of data, making simple assumptions and using simple calculations. At this initial stage, all assumptions should err on the side of caution. If the earliest iterations of the risk assessment predicts elevated risk, it doesn't necessarily mean that there is elevated risk, but additional work needs to be done to refine the risk assessment. In Canada, the earliest iteration is called a Preliminary Quantitative Risk Assessment (PQRA) (Health Canada 2004). Subsequent refinements are often called Detailed Site-Specific Risk Assessments.
+            </p>
+          </section>
+          <section id="ta_slide">
+            <h1>Toxicity Assessment</h1>
+          </section>
+          <section>
+            <h3>Toxicity Assessment</h3>
+            <p>
+            Risk assessments start off very simple, using a minimum of data, making simple assumptions and using simple calculations. At this initial stage, all assumptions should err on the side of caution. If the earliest iterations of the risk assessment predicts elevated risk, it doesn't necessarily mean that there is elevated risk, but additional work needs to be done to refine the risk assessment. In Canada, the earliest iteration is called a Preliminary Quantitative Risk Assessment (PQRA) (Health Canada 2004). Subsequent refinements are often called Detailed Site-Specific Risk Assessments.
+            </p>
+          </section>
+          <section id="rc_slide">
+            <h1>Risk Characterization</h1>
+          </section>
+          <section>
+            <h3>Risk Characterization</h3>
+            <p>
+            Risk assessments start off very simple, using a minimum of data, making simple assumptions and using simple calculations. At this initial stage, all assumptions should err on the side of caution. If the earliest iterations of the risk assessment predicts elevated risk, it doesn't necessarily mean that there is elevated risk, but additional work needs to be done to refine the risk assessment. In Canada, the earliest iteration is called a Preliminary Quantitative Risk Assessment (PQRA) (Health Canada 2004). Subsequent refinements are often called Detailed Site-Specific Risk Assessments.
+            </p>
+          </section>
+        </section>
+        <section class="toc">
+          <div style="margin-left: -200px">
+            <div class="fragment shrink" style="background: #4f81bd;">Start with long list of sites</div>
+            <div class="fragment shrink" style="background: #4f81bd;">Pre-Screening &amp; Prioritization of multiple sites</div>
+            <div class="fragment shrink" style="background: #4f81bd;">[Single Study Site Selected]</div>
+            <div class="fragment shrink" style="background: #4f81bd;">Initial Planning and Scoping</div>
+          </div>
+          <div style="margin-left: -200px">
+            <div class="fragment shrink" style="background: #9bbb59;">Field Investigation</div>
+            <div class="fragment shrink" style="background: #8064a2;">Risk Assessment</div>
+            <div class="fragment shrink" style="background: #f79646;">Risk Management</div>
+            <div class="fragment shrink" style="background: #4f81bd;">Monitoring and Evaluation</div>
+          </div>
+        </section>
+      </div>
+    </div>
+  </body>
+</html>
