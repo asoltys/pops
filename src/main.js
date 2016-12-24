@@ -13,6 +13,7 @@ import hhra from './components/hhra'
 import risk from './components/risk'
 
 const routes = [
+  { path: '/', component: home },
   { path: '/home', component: home },
   { path: '/about', component: about },
   { path: '/prioritization', component: prioritization },

@@ -87,23 +87,18 @@ export default {
   .USAIDLogo { padding: 20px; }
 
   .topnav {
-        background: #336799;
-      border-bottom: 6px solid #61a4e5;
-      clear: both;
-      height: 76px;
-      position: relative;
-      z-index: 3;
-    
+    background: #336799;
+    border-bottom: 6px solid #61a4e5;
+    clear: both;
+    height: 76px;
+    position: relative;
+    z-index: 3;
   }
 
   .bodytext { font-size: 18px; line-height: 1.7em; }
 
   .bodytext a { text-decoration: underline; }
 
-  div.nav { font-size: 15px; }
-  div.nav a { display: block; color: white; margin-top: 20px; }
-
-  footer { padding-top: 40px; }
   .footerbar { 
     min-height: 55px;
     background: #336799;
