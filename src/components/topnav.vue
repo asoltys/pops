@@ -23,14 +23,18 @@
 </script>
 
 <style lang="stylus">
+  .topnav
+    background #336799
+    clear both
+    height 76px
+    position relative
+    z-index 3
+
   nav 
-    font-size 15px
-  
     a 
       display block
       color white
       height 68px 
-      margin-bottom 10px
 
   ul.nav 
     height 76px

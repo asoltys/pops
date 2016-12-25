@@ -39,31 +39,11 @@ export default {
   .USAIDLogo
     padding 20px
 
-  .topnav
-    background #336799
-    clear both
-    height 76px
-    position relative
-    z-index 3
-
   .bodytext
     font-size 18px
     line-height 1.7em
     a
       text-decoration underline
-
-  .footerbar
-    min-height 55px
-    background #336799
-    border-bottom 6px solid #61a4e5
-
-  .footerlinks
-    padding-top 10px
-
-  .footerlinkgroup
-    padding-top 10px
-    .heading
-      font-weight bold
 
   html, body
     height 100%
@@ -85,39 +65,4 @@ export default {
     &:hover
       color #ccc
       transition 300ms
-
-  div, input, button
-    box-sizing border-box
-    box-sizing border-box
-
-  input, button
-    padding 5px 10px
-    border none
-    outline none
-    vertical-align top
-
-  button
-    font-size 16px
-    background #9d936d
-    color #222
-    cursor pointer
-    &:hover
-      background #ccc
-      transition 300ms
-
-  .intro-button
-    width 250px
-    padding 15px 10px
-
-  table
-    &.users
-      width 100%
-      border-collapse collapse
-      tr
-        &:nth-child(odd)
-          background rgba(0,0,0,.2)
-        &:nth-child(even)
-          background rgba(0,0,0,.3)
-        &:hover
-          background rgba(255,255,255,.1)
 </style>

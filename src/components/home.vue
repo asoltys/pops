@@ -3,16 +3,7 @@
     .row
       .col-md-12
         .page-header
-          h1 Human Health Risk Assessment Overview
-    .row
-      .col-md-12
-        ol.breadcrumb
-          li
-            a(href='#') Home
-          li
-            a(href='#') Human Health Risk Assessment
-          li.active Human Health Risk Assessment Overview
-    .row
+          h1 POPs Toolkit
       .col-md-12.bodytext
         p
           | Risk assessment is an iterative process leading to the quantification of potential risk. For the POPs tookit, the emphasis is on assessing health risks to humans resulting from exposure to persistent organic chemicals (although other hazardous chemicals can be analyzed in a similar fashion). The assessment looks at multiple exposure scenarios and calculates the incremental risks associated with each scenario, as well as the overall risk attributable to all the scenarios combined.

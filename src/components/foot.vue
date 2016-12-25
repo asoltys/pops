@@ -35,3 +35,18 @@
     name: 'topnav'
   }
 </script>
+
+<style lang="stylus">
+  .footerbar
+    min-height 55px
+    background #336799
+    border-bottom 6px solid #61a4e5
+
+  .footerlinks
+    padding-top 10px
+
+  .footerlinkgroup
+    padding-top 10px
+    .heading
+      font-weight bold
+</style>
