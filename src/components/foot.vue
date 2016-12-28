@@ -24,10 +24,6 @@
                 a.heading(href='#') Risk Management
             .col-md-4
               .footermeta
-                p
-                  | The information provided on this Web site is not official U.S. Government information and does not represent the views or positions of the U.S. Agency for International Development or the U.S. Government.
-                p
-                  a(href='#') Privacy Policy
 </template>
 
 <script>
@@ -49,4 +45,7 @@
     padding-top 10px
     .heading
       font-weight bold
+
+  footer 
+    padding-top 40px
 </style>

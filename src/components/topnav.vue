@@ -42,7 +42,4 @@
   .nav>li>a:focus, .nav>li>a:hover 
     background #002F6C
     color white
-
-  footer 
-    padding-top 40px
 </style>
