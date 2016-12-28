@@ -90,9 +90,5 @@ module.exports = {
         browsers: ['last 2 versions']
       })
     ]
-  },
-  externals: {
-    "jquery": "$",
-    "reveal": "Reveal"
   }
 }
