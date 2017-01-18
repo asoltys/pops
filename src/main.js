@@ -35,4 +35,3 @@ new Vue({
   components: { app, topnav },
   router: router
 })
-

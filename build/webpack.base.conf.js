@@ -92,6 +92,8 @@ module.exports = {
     ]
   },
   externals: {
-    jquery: '$'
+    jquery: '$',
+    Tour: 'Tour',
+    MathJax: 'MathJax'
   }
 }
