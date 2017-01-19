@@ -21,60 +21,12 @@ import home from './components/home'
 import topnav from './components/topnav'
 import foot from './components/foot'
 
-import Tour from 'Tour'
-import MathJax from 'MathJax'
-
-window.Tour = Tour
-window.MathJax = MathJax
-
 export default {
   name: 'app',
   components: {
     home,
     topnav,
     foot
-  },
-  methods: {
-    startTour () {
-      var tour = new Tour({
-        steps: [
-          {
-            element: '#cs',
-            title: 'Concentration of contaminant in soils',
-            content: 'Usually 90th percentile or maximum'
-          },
-          {
-            element: '#ir',
-            title: 'Accidental soil ingestion rate for adult',
-            content: 'Content of my step'
-          },
-          {
-            element: '#af',
-            title: 'Title of my step',
-            content: 'Content of my step'
-          },
-          {
-            element: '#dhours',
-            title: 'Title of my step',
-            content: 'Content of my step'
-          },
-          {
-            element: '#row',
-            title: 'Title of my step',
-            content: 'Content of my step'
-          }
-        ],
-        storage: false
-      })
-
-      tour.init()
-      console.log(tour)
-      tour.start()
-    }
-  },
-  mounted () {
-    this.$on('tour', function () { this.startTour() })
-    this.$nextTick(function () { MathJax.Hub.Queue(['Typeset', MathJax.Hub]) })
   }
 }
 </script>
