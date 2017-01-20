@@ -90,7 +90,7 @@
             semantics
               annotation-xml(encoding='application/xhtml+xml')
                 input(xmlns='http://www.w3.org/1999/xhtml', style='text-align:right', type='number', size='10')
-        input(v-model='dose')
+        input#dose(v-model='dose', ref='dose')
         table
           tr#csrow
             td
@@ -190,7 +190,6 @@ export default {
   },
   methods: {
     startTour () {
-      console.log(this.tour)
       this.tour.restart()
       this.tour.goTo(1)
     },
@@ -204,7 +203,6 @@ export default {
   mounted () {
     this.$nextTick(function () {
       MathJax.Hub.Queue(['Typeset', MathJax.Hub])
-//      var dose = new Vue('<div>yes</div>')
     })
 
     this.tour = new Tour({
@@ -295,4 +293,8 @@ export default {
     transition opacity .5s
   .fade-enter, .fade-leave-to 
     opacity 0
+
+  .popover-title
+    background #336799
+    color white
 </style>
