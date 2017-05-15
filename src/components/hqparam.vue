@@ -2,18 +2,13 @@
   tr
     td {{ symbol }}#[sub(v-if='sub') {{ sub }}] = 
     td
-      input(type='number', v-model='internal')
+      input(ref='input', type='number', v-bind:value='value', v-on:input='updateValue($event.target.value)')
     td {{ units }}
 </template>
 
 <script>
   export default {
-    props: ['name', 'units'],
-    data () {
-      return {
-        internal: ''
-      }
-    },
+    props: ['name', 'value', 'units'],
     computed: {
       symbol: function () {
         return this.name.match(/[A-Z]+|[a-z]+/g)[0]
@@ -22,9 +17,10 @@
         return this.name.match(/[A-Z]+|[a-z]+/g)[1]
       }
     },
-    watch: {
-      'internal' () {
-        this.$emit('input', this.internal)
+    methods: {
+      updateValue (value) {
+        this.$refs.input.value = value
+        this.$emit('input', value)
       }
     }
   }

@@ -19,10 +19,13 @@
       hqparam(name='Csoil', units='mg/kg', v-model='Csoil')
       hqparam(name='EF', units='days/year', v-model='EF')
       hqparam(name='ED', units='years', v-model='ED')
-      hqparam(name='ET', units='mg/d', v-model='IRs')
-      hqparam(name='VFs', units='unitless', v-model='RBA')
-      hqparam(name='PEFw', units='unitless', v-model='RBA')
+      hqparam(name='ET', units='mg/d', v-model='ET')
+      hqparam(name='VFs', units='unitless', v-model='VFs')
+      hqparam(name='PEFw', units='unitless', v-model='PEFw')
       hqparam(name='AT', units='days', v-model='AT')
+
+    input(v-model='banana')
+    input(v-model='banana')
 </template>
 
 <script>
@@ -34,15 +37,16 @@ export default {
   data () {
     return {
       show: true,
-      CDIsi: '',
-      CDIinhal: '',
       Csoil: '',
       EF: '',
       ED: '',
       IRs: '',
       RBA: '',
       AT: '',
-      BW: 1
+      BW: '',
+      VFs: '',
+      PEFw: '',
+      ET: ''
     }
   },
   methods: {
@@ -64,7 +68,15 @@ export default {
       if (!isNaN(v) && isFinite(v)) {
         return v
       } else {
-        return 0
+        return ''
+      }
+    },
+    CDIinhal: function () {
+      let v = (this.Csoil * this.EF * this.ED * this.ET * ((1 / (this.VFs)) + (1 / (this.PEFw))) / (this.AT))
+      if (!isNaN(v) && isFinite(v)) {
+        return v
+      } else {
+        return ''
       }
     }
   },
