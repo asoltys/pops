@@ -29,7 +29,7 @@
 
 <style lang="stylus" scoped>
   input[type=number]
-    width 66px
+    width 200px
     margin-right 5px
     padding-left 5px
 
