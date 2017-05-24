@@ -2,73 +2,18 @@
   div
     tov(@update='update')
 
-    formula(v-model='CDIsi', param='CDIsi', :params='params', list='Csoil,EF,ED,IRs,RBA,AT,BW', expression='(Csoil * EF * ED * IRs * RBA * 0.000001) / (AT * BW)', heading='Accidental Soil Ingestion Dose')
-
-    h2 Dermal contact with contaminated soil Dose Calculation
-    div `CDIderm = (Csoil*EF*ED*SA*AF*ABSd*0.000001)/(AT*BW) = `
-    input.result(v-model='CDIderm', disabled)
-    table
-      hqparam(name='Csoil', units='mg/kg', v-model='Csoil', desc='concentration in soil (dry weight)')
-      hqparam(name='EF', units='days/year', v-model='EF', desc='exposure frequency')
-      hqparam(name='ED', units='years', v-model='ED', desc='exposure duration')
-      hqparam(name='SA', units='cm2/day', v-model='SA', desc='surface area')
-      hqparam(name='AF', units='mg/cm2', v-model='AF', desc='soil adherence factor')
-      hqparam(name='ABSd', units='proportion', v-model='ABSd', desc='dermal absorption')
-      hqparam(name='AT', units='days', v-model='AT', desc='averaging time (365 days*ED)')
-      hqparam(name='BW', units='kg', v-model='BW', desc='body weight')
-
-    h2 Water Ingestion Dose Calculation
-    div `CDIwater = (Cwater*0.001*EF*ED*IRw)/(AT*BW) = `
-    input.result(v-model='CDIwater', disabled)
-    table
-      hqparam(name='Cwater', units='ug/L', v-model='Cwater', desc='water concentration (total)')
-      hqparam(name='EF', units='days/year', v-model='EF', desc='exposure frequency')
-      hqparam(name='ED', units='years', v-model='ED', desc='exposure duration')
-      hqparam(name='IRw', units='L/day', v-model='IRw', desc='intake rate of water')
-      hqparam(name='AT', units='days', v-model='AT', desc='averaging time (365 days*ED)')
-      hqparam(name='BW', units='kg', v-model='BW', desc='body weight')
-
-    h2 Food Ingestion Dose Calculations
-    h3 Fish
-    div `CDIfish=(Cfish*EF*ED*IRfish*0.000001*CFfish)/(AT*BW) = `
-    input.result(v-model='CDIfish', disabled)
-    table
-      hqparam(name='Cfish', units='mg/kg fresh weight', v-model='Cfish', desc='fish tissue concentrations')
-      hqparam(name='EF', units='days/year', v-model='EF', desc='exposure frequency')
-      hqparam(name='ED', units='years', v-model='ED', desc='exposure duration')
-      hqparam(name='IRfish', units='mg/day', v-model='IRfish', desc='intake rate of fish')
-      hqparam(name='CFfish', units='proportion', v-model='CFfish', desc='contaminated fraction of fish')
-      hqparam(name='AT', units='days', v-model='AT', desc='averaging time (365 days*ED)')
-      hqparam(name='BW', units='kg', v-model='BW', desc='body weight')
-
-    h3 Produce
-    div `CDIp rod=(Cp rod*EF*ED*IRP*0.000001*CFp rod)/(AT*BW) = `
-    input.result(v-model='CDIprod', disabled)
-    table
-      hqparam(name='Cprod', units='mg/kg fresh weight', v-model='Cprod', desc='')
-      hqparam(name='EF', units='days/year', v-model='EF', desc='exposure frequency')
-      hqparam(name='ED', units='years', v-model='ED', desc='exposure duration')
-      hqparam(name='IRprod', units='mg/day', v-model='IRprod', desc='intake rate of produce')
-      hqparam(name='CFprod', units='proportion', v-model='CFprod', desc='contaminated fraction of produce')
-      hqparam(name='AT', units='days', v-model='AT', desc='averaging time (365 days*ED)')
-      hqparam(name='BW', units='kg', v-model='BW', desc='body weight')
-
-    h3 Beef
-    div `CDIbeef=(Cbeef*EF*ED*IRbeef*0.000001*CFbeef)/(AT*BW) = `
-    input.result(v-model='CDIbeef', disabled)
-    table
-      hqparam(name='Cbeef', units='mg/kg fresh weight', v-model='Cbeef', desc='concentration in beef')
-      hqparam(name='EF', units='days/year', v-model='EF', desc='exposure frequency')
-      hqparam(name='ED', units='years', v-model='ED', desc='exposure duration')
-      hqparam(name='IRbeef', units='mg/day', v-model='IRbeef', desc='intake rate of beef')
-      hqparam(name='CFbeef', units='proportion', v-model='CFbeef', desc='contaminated fraction of beef')
-      hqparam(name='AT', units='days', v-model='AT', desc='averaging time (365 days*ED)')
-      hqparam(name='BW', units='kg', v-model='BW', desc='body weight')
+    formula(v-model='CDIsi', param='CDIsi', :params='params', list='Csoil,EF,ED,IRs,RBA,AT,BW', expression='(Csoil*EF*ED*IRs*RBA*0.000001) / (AT*BW)', heading='Accidental Soil Ingestion Dose')
+    formula(v-model='CDIinhal', param='CDIinhal', :params='params', list='Csoil,EF,ED,IRs,RBA,AT,BW', expression='(Csoil*EF*ED*ET*((1/VFs)+(1/PEFw))/(AT))', heading='Inhalation of Contaminated Particles Dose')
+    formula(v-model='CDIderm', param='CDIderm', :params='params', list='Csoil,EF,ED,SA,AF,ABSd,AT,BW', expression='(Csoil*EF*ED*SA*AF*ABSd*0.000001)/(AT*BW)', heading='Dermal contact with contaminated soil Dose Calculation')
+    formula(v-model='CDIwater', param='CDIwater', :params='params', list='Cwater,EF,ED,IRw,AT,BW', expression='(Cwater*0.001*EF*ED*IRw)/(AT*BW)', heading='Dermal contact with contaminated soil Dose Calculation')
+    formula(v-model='CDIfish', param='CDIfish', :params='params', list='Cfish,EF,ED,IRfish,CFfish,AT,BW', expression='(Cfish*EF*ED*IRfish*0.000001*CFfish)/(AT*BW)', heading='Fish Ingestion Dose')
+    formula(v-model='CDIprod', param='CDIprod', :params='params', list='Cfish,EF,ED,IRfish,CFfish,AT,BW', expression='(Cp rod*EF*ED*IRP*0.000001*CFp rod)/(AT*BW)', heading='Produce Ingestion Dose')
+    formula(v-model='CDIbeef', param='CDIbeef', :params='params', list='Cfish,EF,ED,IRfish,CFfish,AT,BW', expression='(Cbeef*EF*ED*IRbeef*0.000001*CFbeef)/(AT*BW)', heading='Beef Ingestion Dose')
 
     h3 Hazard Quotient/Index
     table
-      hqparam(name='TVoral', units='mg/kg-day', v-model='TVoral', desc='toxicity value oral route')
-      hqparam(name='TVinhal', units='mg/m3', v-model='TVinhal', desc='toxicity value inhalation route')
+      hqparam(name='TVoral', units='mg/kg-day', v-model='params.TVoral', desc='toxicity value oral route')
+      hqparam(name='TVinhal', units='mg/m3', v-model='params.TVinhal', desc='toxicity value inhalation route')
 
     table.table
       tr
@@ -128,37 +73,34 @@ import formula from './formula'
 
 export default {
   data () {
-    let obj = {
+    return {
       params: {
-        Csoil: { units: 'mg/kg', desc: 'concentration in soil (dry weight)' },
         EF: { units: 'days/year', desc: 'exposure frequency' },
+        ET: { units: 'days/year', desc: 'exposure frequency' },
         ED: { units: 'years', desc: 'exposure duration' },
-        IRs: { units: 'mg/d', desc: 'ingestion rate soil' },
-        RBA: { units: 'unitless', desc: 'relative bioavailability factor for soil' },
         AT: { units: 'days', desc: 'averaging time (365 days*ED)' },
-        BW: { units: 'kg', desc: 'body weight' }
-      },
-      Csoil: 0.000774,
-      Cwater: 0.000014,
-      Cfish: 0.00000000108,
-      Cprod: 0.0000000997,
-      Cbeef: 0.000000273,
-      VFs: 1960000,
-      PEFw: 1360000000,
-      ABSd: 0.03,
-      RBA: 1,
-      CFfish: 1,
-      CFprod: 1,
-      CFbeef: 1,
-      TVoral: 0.0000000007,
-      TVinhal: 0.00000004
+        BW: { units: 'kg', desc: 'body weight' },
+        IRs: { units: 'mg/day', desc: 'ingestion rate soil' },
+        IRw: { units: 'L/day', desc: 'intake rate of water' },
+        IRfish: { units: 'mg/day', desc: 'intake rate of fish' },
+        IRprod: { units: 'mg/day', desc: 'intake rate of produce' },
+        IRbeef: { units: 'mg/day', desc: 'intake rate of beef' },
+        Csoil: { default: 0.000774, units: 'mg/kg', desc: 'concentration in soil (dry weight)' },
+        Cwater: { default: 0.000014, units: 'ug/L', desc: 'water concentration (total)' },
+        Cfish: { default: 0.00000000108, units: 'mg/kg fresh weight', desc: 'fish tissue concentrations' },
+        Cprod: { default: 0.0000000997, units: 'mg/kg fresh weight', desc: 'concentration in produce' },
+        Cbeef: { default: 0.000000273, units: 'mg/kg fresh weight', desc: 'concentration in beef' },
+        VFs: { default: 1960000, units: 'm3/kg', desc: 'volatilization factor' },
+        PEFw: { default: 1360000000, units: 'm3/kg', desc: 'particulate emission factor' },
+        ABSd: { default: 0.03, units: 'proportion', desc: 'dermal absorption' },
+        RBA: { units: 'unitless', desc: 'relative bioavailability factor for soil' },
+        CFfish: { default: 1, units: 'proportion', desc: 'contaminated fraction of fish' },
+        CFprod: { default: 1, units: 'proportion', desc: 'contaminated fraction of produce' },
+        CFbeef: { default: 1, units: 'proportion', desc: 'contaminated fraction of beef' },
+        TVoral: { default: 0.0000000007, units: '', desc: '' },
+        TVinhal: { default: 0.00000004, units: '', desc: '' }
+      }
     }
-
-    for (let f of 'EF,ED,IRs,IRw,IRfish,IRprod,IRbeef,AT,BW,ET,SA,AF'.split(',')) {
-      obj[f] = null
-    }
-
-    return obj
   },
   methods: {
     format (v) {

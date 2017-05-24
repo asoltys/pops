@@ -6,36 +6,40 @@
     div `{{param}} = {{expression}} = `
     input.result(:value='value', @input='update(value)')
     table
-      hqparam(v-for='p in subset', :key='param + p', :name='Object.keys(p)[0]', :units='p[Object.keys(p)[0]]["units"]', :desc='p[Object.keys(p)[0]]["desc"]', v-model='this[p]')
+      hqparam(v-for='(p,k) in subset', :key='param + p', :name='k', :units='p["units"]', :desc='p["desc"]', v-model='theseparams[k]')
+    p {{theseparams.Csoil}}
 </template>
 
 <script>
   import hqparam from './hqparam'
+
   export default {
-    props: ['param', 'list', 'params', 'expression', 'heading', 'value'],
+    props: ['param', 'params', 'expression', 'heading', 'value', 'list'],
     data () {
-      let obj = {}
-      for (let p of this.list.split(',')) {
-        console.log(p)
-        obj[p] = null
+      return {
+        theseparams: Object.keys(this.params).filter(key => this.list.split(',').includes(key))
+          .reduce((obj, key) => {
+            obj[key] = null
+            return obj
+          }, {})
       }
-      return obj
+    },
+    computed: {
+      subset () {
+        return Object.keys(this.params).filter(key => this.list.split(',').includes(key))
+          .reduce((obj, key) => {
+            obj[key] = this.params[key]
+            return obj
+          }, {})
+      }
     },
     methods: {
       update () {
         this.$emit('input', this.value)
       }
     },
-    computed: {
-      subset () {
-        const _this = this
-        let r = this.list.split(',').map(function (p) {
-          let o = {}
-          o[p] = _this.params[p]
-          return o
-        })
-        return r
-      }
+    mounted () {
+      this.$set(this.theseparams, 'Csoil', null)
     },
     components: { hqparam }
   }
