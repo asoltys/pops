@@ -1,14 +1,15 @@
 <template lang="pug">
   div
+    button(@click='params.EF.desc = "fish n chips"') Yeah
     tov(@update='update')
 
-    formula(v-model='CDIsi', param='CDIsi', :params='params', list='Csoil,EF,ED,IRs,RBA,AT,BW', expression='(Csoil*EF*ED*IRs*RBA*0.000001) / (AT*BW)', heading='Accidental Soil Ingestion Dose')
-    formula(v-model='CDIinhal', param='CDIinhal', :params='params', list='Csoil,EF,ED,IRs,RBA,AT,BW', expression='(Csoil*EF*ED*ET*((1/VFs)+(1/PEFw))/(AT))', heading='Inhalation of Contaminated Particles Dose')
-    formula(v-model='CDIderm', param='CDIderm', :params='params', list='Csoil,EF,ED,SA,AF,ABSd,AT,BW', expression='(Csoil*EF*ED*SA*AF*ABSd*0.000001)/(AT*BW)', heading='Dermal contact with contaminated soil Dose Calculation')
-    formula(v-model='CDIwater', param='CDIwater', :params='params', list='Cwater,EF,ED,IRw,AT,BW', expression='(Cwater*0.001*EF*ED*IRw)/(AT*BW)', heading='Dermal contact with contaminated soil Dose Calculation')
-    formula(v-model='CDIfish', param='CDIfish', :params='params', list='Cfish,EF,ED,IRfish,CFfish,AT,BW', expression='(Cfish*EF*ED*IRfish*0.000001*CFfish)/(AT*BW)', heading='Fish Ingestion Dose')
-    formula(v-model='CDIprod', param='CDIprod', :params='params', list='Cfish,EF,ED,IRfish,CFfish,AT,BW', expression='(Cp rod*EF*ED*IRP*0.000001*CFp rod)/(AT*BW)', heading='Produce Ingestion Dose')
-    formula(v-model='CDIbeef', param='CDIbeef', :params='params', list='Cfish,EF,ED,IRfish,CFfish,AT,BW', expression='(Cbeef*EF*ED*IRbeef*0.000001*CFbeef)/(AT*BW)', heading='Beef Ingestion Dose')
+    formula(v-model='CDIsi', param='CDIsi', :params='params', expression='(Csoil*EF*ED*IRs*RBA*0.000001) / (AT*BW)', heading='Accidental Soil Ingestion Dose')
+    formula(v-model='CDIinhal', param='CDIinhal', :params='params', expression='(Csoil*EF*ED*ET*((1/VFs)+(1/PEFw))/(AT))', heading='Inhalation of Contaminated Particles Dose')
+    formula(v-model='CDIderm', param='CDIderm', :params='params', expression='(Csoil*EF*ED*SA*AF*ABSd*0.000001)/(AT*BW)', heading='Dermal contact with contaminated soil Dose Calculation')
+    formula(v-model='CDIwater', param='CDIwater', :params='params', expression='(Cwater*0.001*EF*ED*IRw)/(AT*BW)', heading='Dermal contact with contaminated soil Dose Calculation')
+    formula(v-model='CDIfish', param='CDIfish', :params='params', expression='(Cfish*EF*ED*IRfish*0.000001*CFfish)/(AT*BW)', heading='Fish Ingestion Dose')
+    formula(v-model='CDIprod', param='CDIprod', :params='params', expression='(Cprod*EF*ED*IRprod*0.000001*CFprod)/(AT*BW)', heading='Produce Ingestion Dose')
+    formula(v-model='CDIbeef', param='CDIbeef', :params='params', expression='(Cbeef*EF*ED*IRbeef*0.000001*CFbeef)/(AT*BW)', heading='Beef Ingestion Dose')
 
     h3 Hazard Quotient/Index
     table
@@ -74,17 +75,26 @@ import formula from './formula'
 export default {
   data () {
     return {
+      CDIsi: '',
+      CDIinhal: '',
+      CDIderm: '',
+      CDIwater: '',
+      CDIfish: '',
+      CDIprod: '',
+      CDIbeef: '',
       params: {
-        EF: { units: 'days/year', desc: 'exposure frequency' },
-        ET: { units: 'days/year', desc: 'exposure frequency' },
-        ED: { units: 'years', desc: 'exposure duration' },
-        AT: { units: 'days', desc: 'averaging time (365 days*ED)' },
-        BW: { units: 'kg', desc: 'body weight' },
-        IRs: { units: 'mg/day', desc: 'ingestion rate soil' },
-        IRw: { units: 'L/day', desc: 'intake rate of water' },
-        IRfish: { units: 'mg/day', desc: 'intake rate of fish' },
-        IRprod: { units: 'mg/day', desc: 'intake rate of produce' },
-        IRbeef: { units: 'mg/day', desc: 'intake rate of beef' },
+        EF: { default: null, units: 'days/year', desc: 'exposure frequency' },
+        ET: { default: null, units: 'days/year', desc: 'exposure frequency' },
+        ED: { default: null, units: 'years', desc: 'exposure duration' },
+        AT: { default: null, units: 'days', desc: 'averaging time (365 days*ED)' },
+        BW: { default: null, units: 'kg', desc: 'body weight' },
+        IRs: { default: null, units: 'mg/day', desc: 'ingestion rate soil' },
+        IRw: { default: null, units: 'L/day', desc: 'intake rate of water' },
+        SA: { default: null, units: 'cm2/day', desc: 'surface area' },
+        AF: { default: null, units: 'mg/cm2', desc: 'soil adherence factor' },
+        IRfish: { default: null, units: 'mg/day', desc: 'intake rate of fish' },
+        IRprod: { default: null, units: 'mg/day', desc: 'intake rate of produce' },
+        IRbeef: { default: null, units: 'mg/day', desc: 'intake rate of beef' },
         Csoil: { default: 0.000774, units: 'mg/kg', desc: 'concentration in soil (dry weight)' },
         Cwater: { default: 0.000014, units: 'ug/L', desc: 'water concentration (total)' },
         Cfish: { default: 0.00000000108, units: 'mg/kg fresh weight', desc: 'fish tissue concentrations' },
@@ -93,7 +103,7 @@ export default {
         VFs: { default: 1960000, units: 'm3/kg', desc: 'volatilization factor' },
         PEFw: { default: 1360000000, units: 'm3/kg', desc: 'particulate emission factor' },
         ABSd: { default: 0.03, units: 'proportion', desc: 'dermal absorption' },
-        RBA: { units: 'unitless', desc: 'relative bioavailability factor for soil' },
+        RBA: { default: 1, units: 'unitless', desc: 'relative bioavailability factor for soil' },
         CFfish: { default: 1, units: 'proportion', desc: 'contaminated fraction of fish' },
         CFprod: { default: 1, units: 'proportion', desc: 'contaminated fraction of produce' },
         CFbeef: { default: 1, units: 'proportion', desc: 'contaminated fraction of beef' },
@@ -108,7 +118,9 @@ export default {
       return ''
     },
     update (values) {
-      Object.assign(this, values)
+      for (let v in values) {
+        this.params[v].default = values[v]
+      }
     },
     moveInput () {
       $('.result').each(function () {
@@ -124,34 +136,6 @@ export default {
     }
   },
   computed: {
-    CDIsi () {
-      let v = (this.Csoil * this.EF * this.ED * this.IRs * this.RBA * 0.000001) / (this.AT * this.BW)
-      return this.format(v)
-    },
-    CDIinhal () {
-      let v = (this.Csoil * this.EF * this.ED * this.ET * ((1 / (this.VFs)) + (1 / (this.PEFw))) / (this.AT))
-      return this.format(v)
-    },
-    CDIderm () {
-      let v = (this.Csoil * this.EF * this.ED * this.SA * this.AF * this.ABSd * 0.00001) / (this.AT * this.BW)
-      return this.format(v)
-    },
-    CDIwater () {
-      let v = (this.Cwater * 0.001 * this.EF * this.ED * this.IRw) / (this.AT * this.BW)
-      return this.format(v)
-    },
-    CDIfish () {
-      let v = (this.Cfish * this.EF * this.ED * this.IRfish * 0.000001 * this.CFfish) / (this.AT * this.BW)
-      return this.format(v)
-    },
-    CDIprod () {
-      let v = (this.Cprod * this.EF * this.ED * this.IRprod * 0.000001 * this.CFprod) / (this.AT * this.BW)
-      return this.format(v)
-    },
-    CDIbeef () {
-      let v = (this.Cbeef * this.EF * this.ED * this.IRbeef * 0.000001 * this.CFbeef) / (this.AT * this.BW)
-      return this.format(v)
-    },
     HQsi () {
       let v = (this.CDIsi / this.TVoral)
       return this.format(v)

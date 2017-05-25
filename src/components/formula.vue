@@ -3,43 +3,62 @@
     h2 
       a(data-toggle='collapse' href='"#" + param') {{heading}}
         div.panel-collapse.collapse.in(:id='param')
-    div `{{param}} = {{expression}} = `
-    input.result(:value='value', @input='update(value)')
+    div `{{param.split('').join(' ' )}} = {{expression}} = `
+    input.result(ref='input', :value='result', @input='update($event.target.value)')
     table
-      hqparam(v-for='(p,k) in subset', :key='param + p', :name='k', :units='p["units"]', :desc='p["desc"]', v-model='theseparams[k]')
-    p {{theseparams.Csoil}}
+      hqparam(v-for='(p,k) in subset()', :key='param + p', :name='k', :units='p["units"]', :desc='p["desc"]', :value='p["default"]', v-model='theseparams[k]')
 </template>
 
 <script>
   import hqparam from './hqparam'
-
+  import math from 'mathjs'
+  
   export default {
-    props: ['param', 'params', 'expression', 'heading', 'value', 'list'],
+    props: ['param', 'params', 'expression', 'heading', 'value'],
     data () {
-      return {
-        theseparams: Object.keys(this.params).filter(key => this.list.split(',').includes(key))
-          .reduce((obj, key) => {
-            obj[key] = null
-            return obj
-          }, {})
-      }
+      return { theseparams: this.updateParams() }
     },
     computed: {
+      result () {
+        let v = math.eval(this.expression, this.theseparams)
+        if (!isNaN(v) && isFinite(v)) return Math.round(v * 100000000000000) / 100000000000000
+        return ''
+      }
+    },
+    methods: {
+      update (value) {
+        this.$emit('input', value)
+      },
       subset () {
-        return Object.keys(this.params).filter(key => this.list.split(',').includes(key))
+        let node = math.parse(this.expression, this)
+
+        let list = node.filter(function (node) {
+          return node.isSymbolNode
+        }).map(x => x.name)
+
+        return Object.keys(this.params)
+          .filter(key => list.includes(key))
           .reduce((obj, key) => {
             obj[key] = this.params[key]
             return obj
           }, {})
+      },
+      updateParams () {
+        let obj = {}
+        Object.keys(this.subset()).forEach(k => {
+          obj[k] = this.subset()[k].default || ''
+        })
+        return obj
       }
     },
-    methods: {
-      update () {
-        this.$emit('input', this.value)
+    watch: {
+      result: {
+        handler (v) {
+          this.$refs.input.value = v
+          this.update(v)
+        },
+        deep: true
       }
-    },
-    mounted () {
-      this.$set(this.theseparams, 'Csoil', null)
     },
     components: { hqparam }
   }

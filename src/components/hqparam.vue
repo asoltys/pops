@@ -2,7 +2,7 @@
   tr
     td {{ symbol }}#[sub(v-if='sub') {{ sub }}] = 
     td
-      input(ref='input', type='number', v-bind:value='value', v-on:input='updateValue($event.target.value)', :disabled='disabled')
+      input(ref='input', type='number', :value='value', @input='updateValue($event.target.value)', :disabled='disabled')
     td {{ units }}
     td.desc(v-if='desc') {{ desc }}
 </template>
@@ -11,10 +11,10 @@
   export default {
     props: ['name', 'value', 'units', 'disabled', 'desc'],
     computed: {
-      symbol: function () {
+      symbol () {
         return this.name.match(/[A-Z]+|[a-z]+/g)[0]
       },
-      sub: function () {
+      sub () {
         return this.name.match(/[A-Z]+|[a-z]+/g)[1]
       }
     },
