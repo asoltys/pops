@@ -1,6 +1,5 @@
 <template lang="pug">
   div
-    button(@click='params.EF.desc = "fish n chips"') Yeah
     tov(@update='update')
 
     formula(v-model='CDIsi', param='CDIsi', :params='params', expression='(Csoil*EF*ED*IRs*RBA*0.000001) / (AT*BW)', heading='Accidental Soil Ingestion Dose')

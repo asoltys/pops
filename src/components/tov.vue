@@ -61,6 +61,9 @@
         }
         this.$emit('update', values)
       }
+    },
+    mounted () {
+      this.$el.querySelectorAll('td')[2].click()
     }
   }
 </script>

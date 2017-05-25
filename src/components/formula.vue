@@ -58,6 +58,12 @@
           this.update(v)
         },
         deep: true
+      },
+      params: {
+        handler (v) {
+          this.theseparams = this.updateParams()
+        },
+        deep: true
       }
     },
     components: { hqparam }
