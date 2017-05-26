@@ -1,12 +1,13 @@
 <template lang="pug">
   div
     h2 
-      a(data-toggle='collapse' href='"#" + param') {{heading}}
-        div.panel-collapse.collapse.in(:id='param')
-    div `{{param.split('').join(' ' )}} = {{expression}} = `
-    input.result(ref='input', :value='result', @input='update($event.target.value)')
-    table
-      hqparam(v-for='(p,k) in subset()', :key='param + p', :name='k', :units='p["units"]', :desc='p["desc"]', :value='p["default"]', v-model='theseparams[k]')
+      a(data-toggle='collapse', :href='"#" + param')
+        slot
+    div.panel-collapse.collapse.in(:id='param')
+      div `{{param.split('').join(' ')}} = {{expression.split('').join(' ')}} = `
+      input.result(ref='input', :value='result', @input='update($event.target.value)')
+      table
+        hqparam(v-for='(p,k) in subset()', :key='param + p', :name='k', :units='p["units"]', :desc='p["desc"]', :value='p["default"]', v-model='theseparams[k]')
 </template>
 
 <script>
@@ -30,11 +31,9 @@
         this.$emit('input', value)
       },
       subset () {
-        let node = math.parse(this.expression, this)
-
-        let list = node.filter(function (node) {
-          return node.isSymbolNode
-        }).map(x => x.name)
+        let list = math.parse(this.expression, this)
+          .filter(node => { return node.isSymbolNode })
+          .map(x => x.name)
 
         return Object.keys(this.params)
           .filter(key => list.includes(key))

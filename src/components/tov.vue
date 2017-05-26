@@ -2,29 +2,15 @@
   table.table.table-hover(@mouseout='col = null')
     thead
       tr
-        th
-        th
-        th Residential
-        th  
-        th Workers
-        th  
-        th Recreator
-        th  
+        th(v-for='v in headers1') {{v}}
       tr
-        th 
-        th
-        th Child
-        th Adult
-        th Outdoor
-        th Construction
-        th Child
-        th Adult
+        th(v-for='v in headers2') {{v}}
     tbody
       tr(v-for='row in Object.keys(data)')
         td
         td
           strong {{row}}
-          td(v-for='v,i in data[row]' @click='update($event)' v-bind:class='{ odd: i % 2, highlight: i == col }' @mouseover='hover') {{v}}
+          td(v-for='v,i in data[row]' @click='update($event)', :class='{ odd: i % 2, highlight: i == col }' @mouseover='hover') {{v}}
 
 </template>
 
@@ -32,6 +18,8 @@
   export default {
     data () {
       return {
+        headers1: ',,Residential,,Workers,,Recreator'.split(','),
+        headers2: ',,Child,Adult,Outdoor,Construction,Child,Adult'.split(','),
         col: null,
         data: {
           EF: [350, 350, 225, 250, 75, 75],

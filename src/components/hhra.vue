@@ -2,66 +2,24 @@
   div
     tov(@update='update')
 
-    formula(v-model='CDIsi', param='CDIsi', :params='params', expression='(Csoil*EF*ED*IRs*RBA*0.000001) / (AT*BW)', heading='Accidental Soil Ingestion Dose')
-    formula(v-model='CDIinhal', param='CDIinhal', :params='params', expression='(Csoil*EF*ED*ET*((1/VFs)+(1/PEFw))/(AT))', heading='Inhalation of Contaminated Particles Dose')
-    formula(v-model='CDIderm', param='CDIderm', :params='params', expression='(Csoil*EF*ED*SA*AF*ABSd*0.000001)/(AT*BW)', heading='Dermal contact with contaminated soil Dose Calculation')
-    formula(v-model='CDIwater', param='CDIwater', :params='params', expression='(Cwater*0.001*EF*ED*IRw)/(AT*BW)', heading='Dermal contact with contaminated soil Dose Calculation')
-    formula(v-model='CDIfish', param='CDIfish', :params='params', expression='(Cfish*EF*ED*IRfish*0.000001*CFfish)/(AT*BW)', heading='Fish Ingestion Dose')
-    formula(v-model='CDIprod', param='CDIprod', :params='params', expression='(Cprod*EF*ED*IRprod*0.000001*CFprod)/(AT*BW)', heading='Produce Ingestion Dose')
-    formula(v-model='CDIbeef', param='CDIbeef', :params='params', expression='(Cbeef*EF*ED*IRbeef*0.000001*CFbeef)/(AT*BW)', heading='Beef Ingestion Dose')
+    formula(v-model='CDIsi', param='CDIsi', :params='params', expression='(Csoil*EF*ED*IRs*RBA*0.000001) / (AT*BW)') Accidental Soil Ingestion Dose
+    formula(v-model='CDIinhal', param='CDIinhal', :params='params', expression='(Csoil*EF*ED*ET*((1/VFs)+(1/PEFw))/(AT))') Inhalation of Contaminated Particles Dose
+    formula(v-model='CDIderm', param='CDIderm', :params='params', expression='(Csoil*EF*ED*SA*AF*ABSd*0.000001)/(AT*BW)') Dermal contact with contaminated soil Dose Calculation
+    formula(v-model='CDIwater', param='CDIwater', :params='params', expression='(Cwater*0.001*EF*ED*IRw)/(AT*BW)') Water Ingestion Dose Calculation
+    formula(v-model='CDIfish', param='CDIfish', :params='params', expression='(Cfish*EF*ED*IRfish*0.000001*CFfish)/(AT*BW)') Fish Ingestion Dose
+    formula(v-model='CDIprod', param='CDIprod', :params='params', expression='(Cprod*EF*ED*IRprod*0.000001*CFprod)/(AT*BW)') Produce Ingestion Dose
+    formula(v-model='CDIbeef', param='CDIbeef', :params='params', expression='(Cbeef*EF*ED*IRbeef*0.000001*CFbeef)/(AT*BW)') Beef Ingestion Dose
 
     h3 Hazard Quotient/Index
     table
-      hqparam(name='TVoral', units='mg/kg-day', v-model='params.TVoral', desc='toxicity value oral route')
-      hqparam(name='TVinhal', units='mg/m3', v-model='params.TVinhal', desc='toxicity value inhalation route')
+      hqparam(name='TVoral', :units='params.TVoral.units', v-model='TVoral', :value='TVoral', :desc='params.TVoral.desc')
+      hqparam(name='TVinhal', :units='params.TVinhal.units', v-model='TVinhal', :value='TVinhal', :desc='params.TVinhal.desc')
 
     table.table
       tr
-        th Exposure Route
-        th Dose
-        th
-        th Hazard Quotient
-        th
-      tr
-        td soil ingestion
-        td CDIsi (mg/kg-d)
-        td
-          input(v-model='CDIsi')
-        td HQsi
-        td
-          input(v-model='HQsi')
-      tr
-        td particulate inhalation
-        td CDIinhal (mg/kg-d)
-        td
-          input(v-model='CDIinhal')
-        td HQinhal
-        td
-          input(v-model='HQinhal')
-      tr
-        td dermal contact
-        td CDIderm (mg/kg-d)
-        td
-          input(v-model='CDIderm')
-        td HQderm
-        td
-          input(v-model='HQderm')
-      tr
-        td water ingestion
-        td CDIwater (mg/kg-d)
-        td
-          input(v-model='CDIwater')
-        td HQwater
-        td
-          input(v-model='HQwater')
-      tr
-        td fish ingestion
-        td CDIfish (mg/kg-d)
-        td
-          input(v-model='CDIfish')
-        td HQfish
-        td
-          input(v-model='HQfish')
+        th(v-for='v in "Exposure Route,Dose,,Hazard Quotient,".split(",")')
+      exposure-route(v-for='r in exposureRoutes', v-model='$data[r.symbol]', :route='r', :value='$data[r.symbol]')
+    pre {{CDIsi}}
 </template>
 
 <script>
@@ -70,6 +28,7 @@ import MathJax from 'MathJax'
 import hqparam from './hqparam'
 import tov from './tov'
 import formula from './formula'
+import ExposureRoute from './ExposureRoute'
 
 export default {
   data () {
@@ -81,6 +40,8 @@ export default {
       CDIfish: '',
       CDIprod: '',
       CDIbeef: '',
+      TVoral: 0.0000000007,
+      TVinhal: 0.00000004,
       params: {
         EF: { default: null, units: 'days/year', desc: 'exposure frequency' },
         ET: { default: null, units: 'days/year', desc: 'exposure frequency' },
@@ -111,11 +72,20 @@ export default {
       }
     }
   },
+  computed: {
+    exposureRoutes () {
+      return [
+        { dose: 'soil ingestion', symbol: 'CDIsi', units: '(mg/kg-d)', divisor: this.TVoral },
+        { dose: 'particulate inhalation', symbol: 'CDIinhal', units: '(mg/kg-d)', divisor: this.TVinhal },
+        { dose: 'dermal contact', symbol: 'CDIderm', units: '(mg/kg-d)', divisor: this.TVoral },
+        { dose: 'water ingestion', symbol: 'CDIwater', units: '(mg/kg-d)', divisor: this.TVoral },
+        { dose: 'fish ingestion', symbol: 'CDIfish', units: '(mg/kg-d)', divisor: this.TVoral },
+        { dose: 'produce ingestion', symbol: 'CDIprod', units: '(mg/kg-d)', divisor: this.TVoral },
+        { dose: 'beef ingestion', symbol: 'CDIbeef', units: '(mg/kg-d)', divisor: this.TVoral }
+      ]
+    }
+  },
   methods: {
-    format (v) {
-      if (!isNaN(v) && isFinite(v)) return Math.round(v * 100000000000000) / 100000000000000
-      return ''
-    },
     update (values) {
       for (let v in values) {
         this.params[v].default = values[v]
@@ -134,36 +104,6 @@ export default {
       $('.collapse').collapse('hide')
     }
   },
-  computed: {
-    HQsi () {
-      let v = (this.CDIsi / this.TVoral)
-      return this.format(v)
-    },
-    HQinhal () {
-      let v = (this.CDIinhal / this.TVinhal)
-      return this.format(v)
-    },
-    HQderm () {
-      let v = (this.CDIderm / this.TVoral)
-      return this.format(v)
-    },
-    HQwater () {
-      let v = (this.CDIwater / this.TVoral)
-      return this.format(v)
-    },
-    HQfish () {
-      let v = (this.CDIfish / this.TVoral)
-      return this.format(v)
-    },
-    HQprod () {
-      let v = (this.CDIprod / this.TVoral)
-      return this.format(v)
-    },
-    HQbeef () {
-      let v = (this.CDIbeef / this.TVoral)
-      return this.format(v)
-    }
-  },
   mounted () {
     this.$nextTick(function () {
       MathJax.Hub.Queue(['Typeset', MathJax.Hub])
@@ -173,6 +113,6 @@ export default {
       })
     })
   },
-  components: { hqparam, tov, formula }
+  components: { hqparam, tov, formula, ExposureRoute }
 }
 </script>
