@@ -4,17 +4,19 @@
     td 
     td {{route.symbol}} {{route.units}}
     td
-      input(ref='input' v-model='CD', :value='value', @input='updateValue($event.target.value)')
+      input(ref='input' v-model='params[route.symbol].default', :disabled='true')
     td HQ{{sub}}
     td
       input(:disabled='true', v-model='HQ')
 </template>
 
 <script>
+  import params from '../params'
+
   export default {
     data () {
       return {
-        CD: this.value
+        params: params
       }
     },
     props: ['route', 'value'],
@@ -23,19 +25,13 @@
         return this.route.symbol.match(/[A-Z]+|[a-z]+/g)[1]
       },
       HQ () {
-        return this.value / this.route.divisor
+        return this.params[this.route.symbol].default / this.route.divisor
       }
     },
     methods: {
       format (v) {
         if (!isNaN(v) && isFinite(v)) return Math.round(v * 10) / 10
         return ''
-      },
-      updateValue (value) {
-        this.CD = value
-        this.HQ = this.format(this.CD / this.route.divisor)
-        this.$refs.input.value = value
-        this.$emit('input', value)
       }
     }
   }

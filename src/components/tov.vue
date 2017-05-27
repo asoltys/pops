@@ -1,5 +1,5 @@
 <template lang="pug">
-  table.table.table-hover(@mouseout='col = null')
+  table.table(@mouseout='col = null')
     thead
       tr
         th(v-for='v in headers1') {{v}}

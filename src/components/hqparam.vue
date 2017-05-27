@@ -2,14 +2,14 @@
   tr
     td {{ symbol }}#[sub(v-if='sub') {{ sub }}] = 
     td
-      input(ref='input', type='number', :value='value', @input='updateValue($event.target.value)', :disabled='disabled')
-    td {{ units }}
-    td.desc(v-if='desc') {{ desc }}
+      input(ref='input', type='number', :value='param.value', @input='updateValue($event.target.value)', :disabled='disabled')
+    td {{ param.units }}
+    td.desc(v-if='param.desc') {{ param.desc }}
 </template>
 
 <script>
   export default {
-    props: ['name', 'value', 'units', 'disabled', 'desc'],
+    props: ['disabled', 'param', 'name'],
     computed: {
       symbol () {
         return this.name.match(/[A-Z]+|[a-z]+/g)[0]
