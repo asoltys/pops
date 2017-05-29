@@ -4,7 +4,7 @@
     td 
     td {{route.symbol}} {{route.units}}
     td
-      input(ref='input' v-model='params[route.symbol].default', :disabled='true')
+      input(ref='input' v-model='params[route.symbol].value', :disabled='true')
     td HQ{{sub}}
     td
       input(:disabled='true', v-model='HQ')
@@ -25,7 +25,7 @@
         return this.route.symbol.match(/[A-Z]+|[a-z]+/g)[1]
       },
       HQ () {
-        return this.params[this.route.symbol].default / this.route.divisor
+        return this.format(this.params[this.route.symbol].value / this.route.divisor)
       }
     },
     methods: {

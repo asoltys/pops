@@ -5,12 +5,9 @@
         slot
     div.panel-collapse.collapse.in(:id='param')
       div `{{param.split('').join(' ')}} = {{expression.split('').join(' ')}} = `
-      input.result(ref='input', :value='result', @input='update($event.target.value)')
+      input.result(ref='input', :value='result', @input='update($event.target.value)', :disabled='true')
       table
         hqparam(v-for='(p,k) in subset()', :key='param + k', :name='k', :param='p', v-model='theseparams[k]')
-    pre {{result}}
-    pre {{theseparams}}
-    pre {{subset()}}
 </template>
 
 <script>
@@ -31,11 +28,13 @@
         let v = math.eval(this.expression, this.theseparams)
         if (!isNaN(v) && isFinite(v)) return Math.round(v * 100000000000000) / 100000000000000
         return ''
+      },
+      compound () {
+        return [this.params.EF.value, this.params.ET.value, this.params.ED.value].join()
       }
     },
     methods: {
       update (value) {
-        this.params[this.param].value = value
         this.$emit('input', value)
       },
       subset () {
@@ -59,18 +58,14 @@
       }
     },
     watch: {
-      result: {
-        handler (v) {
-          this.$refs.input.value = v
-          this.update(v)
-        },
-        deep: true
+      result (v) {
+        this.$refs.input.value = v
+        this.update(v)
       },
-      params: {
+      compound: {
         handler (v) {
           this.theseparams = this.updateParams()
-        },
-        deep: true
+        }
       }
     },
     components: { hqparam }
