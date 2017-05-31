@@ -39,13 +39,13 @@ export default {
   computed: {
     exposureRoutes () {
       return [
-        { dose: 'soil ingestion', symbol: 'CDIsi', units: '(mg/kg-d)', divisor: params.TVoral.value },
-        { dose: 'particulate inhalation', symbol: 'CDIinhal', units: '(mg/kg-d)', divisor: params.TVinhal.value },
-        { dose: 'dermal contact', symbol: 'CDIderm', units: '(mg/kg-d)', divisor: params.TVoral.value },
-        { dose: 'water ingestion', symbol: 'CDIwater', units: '(mg/kg-d)', divisor: params.TVoral.value },
-        { dose: 'fish ingestion', symbol: 'CDIfish', units: '(mg/kg-d)', divisor: params.TVoral.value },
-        { dose: 'produce ingestion', symbol: 'CDIprod', units: '(mg/kg-d)', divisor: params.TVoral.value },
-        { dose: 'beef ingestion', symbol: 'CDIbeef', units: '(mg/kg-d)', divisor: params.TVoral.value }
+        { dose: 'soil ingestion', symbol: 'CDIsi', units: '(mg/kg-d)', divisor: 'TVoral' },
+        { dose: 'particulate inhalation', symbol: 'CDIinhal', units: '(mg/kg-d)', divisor: 'TVinhal' },
+        { dose: 'dermal contact', symbol: 'CDIderm', units: '(mg/kg-d)', divisor: 'TVoral' },
+        { dose: 'water ingestion', symbol: 'CDIwater', units: '(mg/kg-d)', divisor: 'TVoral' },
+        { dose: 'fish ingestion', symbol: 'CDIfish', units: '(mg/kg-d)', divisor: 'TVoral' },
+        { dose: 'produce ingestion', symbol: 'CDIprod', units: '(mg/kg-d)', divisor: 'TVoral' },
+        { dose: 'beef ingestion', symbol: 'CDIbeef', units: '(mg/kg-d)', divisor: 'TVoral' }
       ]
     }
   },

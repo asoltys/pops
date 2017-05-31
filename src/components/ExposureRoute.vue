@@ -5,9 +5,9 @@
     td {{route.symbol}} {{route.units}}
     td
       input(ref='input' v-model='params[route.symbol].value', :disabled='true')
-    td HQ{{sub}}
+    td {{output}}{{sub}}
     td
-      input(:disabled='true', v-model='HQ')
+      input(:disabled='true', v-model='result')
 </template>
 
 <script>
@@ -24,8 +24,15 @@
       sub () {
         return this.route.symbol.match(/[A-Z]+|[a-z]+/g)[1]
       },
-      HQ () {
-        return this.format(this.params[this.route.symbol].value / this.route.divisor)
+      result () {
+        let n = (this.route.divisor === undefined)
+          ? this.params[this.route.multiplier].value
+          : 1 / this.params[this.route.divisor].value
+
+        return this.format(this.params[this.route.symbol].value * n)
+      },
+      output () {
+        return (this.route.divisor === undefined) ? 'ILCR' : 'HQ'
       }
     },
     methods: {
