@@ -31,5 +31,25 @@ export default {
   CFprod: { value: 1, units: 'proportion', desc: 'contaminated fraction of produce' },
   CFbeef: { value: 1, units: 'proportion', desc: 'contaminated fraction of beef' },
   TVoral: { value: 0.0000000007, units: '', desc: '' },
-  TVinhal: { value: 0.00000004, units: '', desc: '' }
+  TVinhal: { value: 0.00000004, units: '', desc: '' },
+  data: {
+    EF: [350, 350, 225, 250, 75, 75],
+    ED: [6, 26, 25, 1, 6, 26],
+    ET: [1, 1, 0.33, 0.33, 0.0416, 0.0416],
+    AT: [2190, 9490, 9125, 350, 2190, 9490],
+    BW: [15, 80, 80, 80, 15, 80],
+    IRs: [200, 100, 100, 330, 200, 100],
+    SA: [2337, 6032, 3527, 3527, 2337, 6032],
+    AF: [0.2, 0.07, 0.12, 0.3, 0.2, 0.07],
+    LT: [70, 70, 70, 70, 70, 70],
+    IFsoil: [36750, 36750, 7031.3, 1031.3, 7875, 7875],
+    IFderm: [103390, 103390, 29759, 3307, 22155, 22155],
+    IFwater: [328.0, 328.0, 176, 7.8, 3.0, 3.0],
+    IFfish: [7455000, 7455000],
+    IFprod: [60368875, 60368875],
+    IFbeef: [32091500, 32091500],
+    IRfish: [19500, 54000],
+    IRprod: [109800, 302500],
+    IRbeef: [40100, 178000]
+  }
 }

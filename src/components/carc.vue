@@ -4,7 +4,7 @@
     tov(@update='update')
 
     formula(v-model='params.CDIsi.value', param='CDIsi', expression='(Csoil*IFsoil*RBA*0.000001) / (365*LT)') Accidental Soil Ingestion Dose
-    formula(v-model='params.CDIinhal.value', param='CDIinhal', expression='(Csoil*EF*ED*ET*((1/(VFs))+(1/(PEFw)))/(365*LT*0.001))') Inhalation of Contaminated Particles Dose
+    formula(v-model='params.CDIinhal.value', param='CDIinhal', expression='(Csoil*EF*ED*ET*((1/(VF))+(1/(PEF)))/(365*LT*0.001))') Inhalation of Contaminated Particles Dose
     formula(v-model='params.CDIderm.value', param='CDIderm', expression='(Csoil*IFderm*ABSd*0.000001)/(365*LT)') Dermal contact with contaminated soil Dose Calculation
     formula(v-model='params.CDIwater.value', param='CDIwater', expression='(Cwater*0.001*(IFwater))/(365*LT)') Water Ingestion Dose Calculation
     formula(v-model='params.CDIfish.value', param='CDIfish', expression='(Cfish*IFfish*0.000001*CFfish)/(365*LT)') Fish Ingestion Dose

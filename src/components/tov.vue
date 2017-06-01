@@ -5,8 +5,18 @@
         .modal-header
           button.close(type='button', data-dismiss='modal', aria-label='Close')
             span(aria-hidden='true') ×
-          h4 Default Exposure Values
+          h4 Set Parameter Values
         .modal-body
+          label(for='chemical') Chemical: &nbsp;
+          select(v-model='chemical', @change='setChemical')
+            optgroup(v-for='g in Object.keys(chemicals)' :label='g')
+              option(v-for='c in Object.keys(chemicals[g])' :value='chemicals[g][c]') {{c}}
+          table.table
+            tr
+              th(v-for='t in Object.keys(chemical)') 
+                abbr(:title='params[t].desc') {{t}}
+            tr
+              td(v-for='t in Object.keys(chemical)') {{chemical[t]}}
           table.table
             thead
               tr
@@ -14,15 +24,16 @@
               tr
                 th(v-for='v in headers2') {{v}}
             tbody
-              tr(v-for='row in Object.keys(data)')
+              tr(v-for='param in Object.keys(data)')
                 td
                 td
-                  strong {{row}}
-                  td(v-for='v,i in data[row]' @click='update($event)', :class='{ odd: i % 2, highlight: i == col }' @mouseover='hover') {{v}}
+                  abbr(:title='params[param].desc') {{param}}
+                td(v-for='v,i in data[param]' @click='update($event)', :class='{ odd: i % 2, highlight: i == col }' @mouseover='hover') {{v}}
 </template>
 
 <script>
   import params from '../params'
+  import chemicals from '../chemicals'
   import $ from 'jquery'
 
   export default {
@@ -31,7 +42,10 @@
         headers1: ',,Residential,,Workers,,Recreator'.split(','),
         headers2: ',,Child,Adult,Outdoor,Construction,Child,Adult'.split(','),
         col: null,
-        data: params.data
+        params: params,
+        data: params.data,
+        chemicals: chemicals,
+        chemical: {}
       }
     },
     methods: {
@@ -46,10 +60,18 @@
         this.$emit('update', values)
         this.col = e.target.cellIndex - 2
         $('#myModal').modal('hide')
+      },
+      setChemical () {
+        Object.keys(this.chemical).forEach(c => {
+          if (this.params[c]) {
+            this.params[c].value = this.chemical[c]
+          }
+        })
       }
     },
     mounted () {
       this.$el.querySelectorAll('td')[2].click()
+      this.chemical = this.chemicals['Dioxins']['TCDD, 2,3,7,8-']
     }
   }
 </script>
@@ -60,5 +82,8 @@
 
   .highlight
     background #eee
+
+  abbr
+    text-decoration none
 </style>
   
