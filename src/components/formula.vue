@@ -7,7 +7,7 @@
       div `{{param.split('').join(' ')}} = {{expression.split('').join(' ')}} = `
       input.result(ref='input', :value='result', @input='update($event.target.value)', :disabled='true')
       table
-        hqparam(v-for='(p,k) in subset()', :key='param + k', :name='k', :param='p', v-model='theseparams[k]')
+        hqparam(v-for='(p,k) in subset()', :ref='k', :name='k', :param='p', v-model='theseparams[k]')
 </template>
 
 <script>
@@ -26,11 +26,13 @@
     computed: {
       result () {
         let v = math.eval(this.expression, this.theseparams)
-        if (!isNaN(v) && isFinite(v)) return Math.round(v * 100000000000000) / 100000000000000
+        if (!isNaN(v) && isFinite(v)) {
+          return v.toExponential(2)
+        }
         return ''
       },
       compound () {
-        return [this.params.EF.value, this.params.ET.value, this.params.ED.value].join()
+        return [this.params.EF.value, this.params.ET.value, this.params.ED.value, this.params.LT.value].join()
       }
     },
     methods: {
@@ -62,10 +64,11 @@
         this.$refs.input.value = v
         this.update(v)
       },
-      compound: {
-        handler (v) {
-          this.theseparams = this.updateParams()
-        }
+      compound () {
+        this.theseparams = this.updateParams()
+        Object.keys(this.theseparams).forEach(p => {
+          this.$refs[p][0].$refs.input.value = this.theseparams[p]
+        })
       }
     },
     components: { hqparam }

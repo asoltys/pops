@@ -1,17 +1,24 @@
 <template lang="pug">
-  table.table(@mouseout='col = null')
-    thead
-      tr
-        th(v-for='v in headers1') {{v}}
-      tr
-        th(v-for='v in headers2') {{v}}
-    tbody
-      tr(v-for='row in Object.keys(data)')
-        td
-        td
-          strong {{row}}
-          td(v-for='v,i in data[row]' @click='update($event)', :class='{ odd: i % 2, highlight: i == col }' @mouseover='hover') {{v}}
-
+  #myModal.modal.fade(tabindex='-1', role='dialog', aria-labelledby='gridSystemModalLabel')
+    .modal-dialog(role='document')
+      .modal-content
+        .modal-header
+          button.close(type='button', data-dismiss='modal', aria-label='Close')
+            span(aria-hidden='true') ×
+          h4.gridSystemModalLabel Modal title
+        .modal-body
+          table.table(@mouseout='col = null')
+            thead
+              tr
+                th(v-for='v in headers1') {{v}}
+              tr
+                th(v-for='v in headers2') {{v}}
+            tbody
+              tr(v-for='row in Object.keys(data)')
+                td
+                td
+                  strong {{row}}
+                  td(v-for='v,i in data[row]' @click='update($event)', :class='{ odd: i % 2, highlight: i == col }' @mouseover='hover') {{v}}
 </template>
 
 <script>
@@ -35,6 +42,7 @@
           values[key] = this.data[key][e.target.cellIndex - 2]
         }
         this.$emit('update', values)
+        this.col = e.target.cellIndex - 2
       }
     },
     mounted () {

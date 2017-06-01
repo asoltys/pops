@@ -29,7 +29,9 @@
           ? this.params[this.route.multiplier].value
           : 1 / this.params[this.route.divisor].value
 
-        return this.format(this.params[this.route.symbol].value * n)
+        let v = this.format(this.params[this.route.symbol].value * n)
+        this.params[this.output + this.sub].value = v
+        return v
       },
       output () {
         return (this.route.divisor === undefined) ? 'ILCR' : 'HQ'
@@ -37,7 +39,7 @@
     },
     methods: {
       format (v) {
-        if (!isNaN(v) && isFinite(v)) return Math.round(v * 10) / 10
+        if (!isNaN(v) && isFinite(v)) return v.toExponential(2)
         return ''
       }
     }

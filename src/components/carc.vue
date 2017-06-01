@@ -1,20 +1,23 @@
 <template lang="pug">
   div
+    button(type='button', data-toggle='modal', data-target='#myModal') Launch modal
     tov(@update='update')
 
     formula(v-model='params.CDIsi.value', param='CDIsi', expression='(Csoil*IFsoil*RBA*0.000001) / (365*LT)') Accidental Soil Ingestion Dose
-    formula(v-model='params.CDIinhal.value', param='CDIinhal', expression='(Csoil*EF*ED*ET*((1/(VFs))+(1/(PEFw)))/(365*LT*0.0001))') Inhalation of Contaminated Particles Dose
+    formula(v-model='params.CDIinhal.value', param='CDIinhal', expression='(Csoil*EF*ED*ET*((1/(VFs))+(1/(PEFw)))/(365*LT*0.001))') Inhalation of Contaminated Particles Dose
     formula(v-model='params.CDIderm.value', param='CDIderm', expression='(Csoil*IFderm*ABSd*0.000001)/(365*LT)') Dermal contact with contaminated soil Dose Calculation
-    formula(v-model='params.CDIwater.value', param='CDIwater', expression='Cwater*0.001*IFwater/(365*LT)') Water Ingestion Dose Calculation
-    formula(v-model='params.CDIfish.value', param='CDIfish', expression='Cfish*IFfish*0.000001*CFfish/(365*LT)') Fish Ingestion Dose
-    formula(v-model='params.CDIprod.value', param='CDIprod', expression='Cprod*IFprod*0.000001*CFprod/(365*LT)') Produce Ingestion Dose
-    formula(v-model='params.CDIbeef.value', param='CDIbeef', expression='Cbeef*IFbeef*0.000001*CFbeef/(365*LT)') Beef Ingestion Dose
+    formula(v-model='params.CDIwater.value', param='CDIwater', expression='(Cwater*0.001*(IFwater))/(365*LT)') Water Ingestion Dose Calculation
+    formula(v-model='params.CDIfish.value', param='CDIfish', expression='(Cfish*IFfish*0.000001*CFfish)/(365*LT)') Fish Ingestion Dose
+    formula(v-model='params.CDIprod.value', param='CDIprod', expression='(Cprod*IFprod*0.000001*CFprod)/(365*LT)') Produce Ingestion Dose
+    formula(v-model='params.CDIbeef.value', param='CDIbeef', expression='(Cbeef*IFbeef*0.000001*CFbeef)/(365*LT)') Beef Ingestion Dose
 
     h3 Hazard Quotient/Index
     table.table
       tr
         th(v-for='v in "Exposure Route,Dose,,Hazard Quotient,".split(",")')
       exposure-route(v-for='r in exposureRoutes', v-model='params[r.symbol].value', :route='r', :value='params[r.symbol].value')
+    div Combined ILCR: {{sum}}
+
 </template>
 
 <script>
@@ -43,9 +46,23 @@ export default {
         { dose: 'produce ingestion', symbol: 'CDIprod', units: '(mg/kg-d)', multiplier: 'SFO' },
         { dose: 'beef ingestion', symbol: 'CDIbeef', units: '(mg/kg-d)', multiplier: 'SFO' }
       ]
+    },
+    sum () {
+      let s =
+        parseFloat(this.params.ILCRsi.value) +
+        parseFloat(this.params.ILCRinhal.value) +
+        parseFloat(this.params.ILCRderm.value) +
+        parseFloat(this.params.ILCRwater.value) +
+        parseFloat(this.params.ILCRfish.value) +
+        parseFloat(this.params.ILCRprod.value) +
+        parseFloat(this.params.ILCRbeef.value)
+      return s.toExponential(2)
     }
   },
   methods: {
+    popover (e) {
+      this.$el.querySelector('#tov').modal()
+    },
     update (values) {
       for (let v in values) {
         this.params[v].value = values[v]
@@ -61,7 +78,7 @@ export default {
           left: offset.left + width
         })
       })
-      $('.collapse').collapse('hide')
+      // $('.collapse').collapse('hide')
     }
   },
   mounted () {
