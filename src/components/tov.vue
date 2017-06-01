@@ -1,13 +1,13 @@
 <template lang="pug">
-  #myModal.modal.fade(tabindex='-1', role='dialog', aria-labelledby='gridSystemModalLabel')
+  #myModal.modal.fade(tabindex='-1', role='dialog')
     .modal-dialog(role='document')
       .modal-content
         .modal-header
           button.close(type='button', data-dismiss='modal', aria-label='Close')
             span(aria-hidden='true') ×
-          h4.gridSystemModalLabel Modal title
+          h4 Default Exposure Values
         .modal-body
-          table.table(@mouseout='col = null')
+          table.table
             thead
               tr
                 th(v-for='v in headers1') {{v}}
@@ -23,6 +23,8 @@
 
 <script>
   import params from '../params'
+  import $ from 'jquery'
+
   export default {
     data () {
       return {
@@ -43,6 +45,7 @@
         }
         this.$emit('update', values)
         this.col = e.target.cellIndex - 2
+        $('#myModal').modal('hide')
       }
     },
     mounted () {

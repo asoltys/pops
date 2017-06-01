@@ -1,6 +1,6 @@
 <template lang="pug">
   div
-    button(type='button', data-toggle='modal', data-target='#myModal') Launch modal
+    button(type='button', data-toggle='modal', data-target='#myModal') Set Default Exposure Values
     tov(@update='update')
 
     formula(v-model='params.CDIsi.value', param='CDIsi', expression='(Csoil*IFsoil*RBA*0.000001) / (365*LT)') Accidental Soil Ingestion Dose
