@@ -1,6 +1,6 @@
 <template lang="pug">
-  #myModal.modal.fade(tabindex='-1', role='dialog')
-    .modal-dialog(role='document')
+  .modal.fade
+    .modal-dialog
       .modal-content
         .modal-header
           button.close(type='button', data-dismiss='modal', aria-label='Close')
@@ -11,12 +11,14 @@
           select(v-model='chemical', @change='setChemical')
             optgroup(v-for='g in Object.keys(chemicals)' :label='g')
               option(v-for='c in Object.keys(chemicals[g])' :value='chemicals[g][c]') {{c}}
+
           table.table
             tr
               th(v-for='t in Object.keys(chemical)') 
                 abbr(:title='params[t].desc') {{t}}
             tr
               td(v-for='t in Object.keys(chemical)') {{chemical[t]}}
+
           table.table
             thead
               tr
@@ -59,7 +61,7 @@
         }
         this.$emit('update', values)
         this.col = e.target.cellIndex - 2
-        $('#myModal').modal('hide')
+        $('.modal').modal('hide')
       },
       setChemical () {
         Object.keys(this.chemical).forEach(c => {
