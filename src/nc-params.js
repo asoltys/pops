@@ -15,7 +15,7 @@ export default {
   AF: { value: null, units: 'mg/cm2', desc: 'soil adherence factor' },
   LT: { value: null, units: 'days/year', desc: 'exposure frequency' },
   IRs: { value: null, units: 'mg/day', desc: 'ingestion rate soil' },
-  IRw: { value: null, units: 'L/day', desc: 'intake rate of water' },
+  IRwater: { value: null, units: 'L/day', desc: 'intake rate of water' },
   IRfish: { value: null, units: 'mg/day', desc: 'intake rate of fish' },
   IRprod: { value: null, units: 'mg/day', desc: 'intake rate of produce' },
   IRbeef: { value: null, units: 'mg/day', desc: 'intake rate of beef' },
@@ -55,6 +55,6 @@ export default {
     IRfish: [19500, 54000],
     IRprod: [109800, 302500],
     IRbeef: [40100, 178000],
-    IRw: [0.78, 2.5, null, null, 0.12, 0.071]
+    IRwater: [0.78, 2.5, null, null, 0.12, 0.071]
   }
 }

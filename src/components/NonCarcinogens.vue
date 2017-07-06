@@ -8,7 +8,7 @@
     formula(v-model='params.CDIsi.value', :params='params', param='CDIsi', expression='(Csoil*EF*ED*IRs*RBA*0.000001) / (AT*BW)') Accidental Soil Ingestion Dose
     formula(v-model='params.CDIinhal.value', :params='params', param='CDIinhal', expression='(Csoil*EF*ED*ET*((1/VF)+(1/PEF))/(AT))') Inhalation of Contaminated Particles Dose
     formula(v-model='params.CDIderm.value', :params='params', param='CDIderm', expression='(Csoil*EF*ED*SA*AF*ABSd*0.000001)/(AT*BW)') Dermal contact with contaminated soil Dose Calculation
-    formula(v-model='params.CDIwater.value', :params='params', param='CDIwater', expression='(Cwater*0.001*EF*ED*IRw)/(AT*BW)') Water Ingestion Dose Calculation
+    formula(v-model='params.CDIwater.value', :params='params', param='CDIwater', expression='(Cwater*0.001*EF*ED*IRwater)/(AT*BW)') Water Ingestion Dose Calculation
     formula(v-model='params.CDIfish.value', :params='params', param='CDIfish', expression='(Cfish*EF*ED*IRfish*0.000001*CFfish)/(AT*BW)') Fish Ingestion Dose
     formula(v-model='params.CDIprod.value', :params='params', param='CDIprod', expression='(Cprod*EF*ED*IRprod*0.000001*CFprod)/(AT*BW)') Produce Ingestion Dose
     formula(v-model='params.CDIbeef.value', :params='params', param='CDIbeef', expression='(Cbeef*EF*ED*IRbeef*0.000001*CFbeef)/(AT*BW)') Beef Ingestion Dose

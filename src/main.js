@@ -11,9 +11,20 @@ window.NonCarcinogens = NonCarcinogens
 window.ProblemFormulation = ProblemFormulation
 
 /* eslint-disable no-new */
+new Vue({
+  el: '#carc',
+  template: '<Carcinogens/>',
+  components: { Carcinogens }
+})
 
 new Vue({
-  el: '#app',
+  el: '#non-carc',
   template: '<NonCarcinogens/>',
   components: { NonCarcinogens }
+})
+
+new Vue({
+  el: '#problem-formulation',
+  template: '<ProblemFormulation/>',
+  components: { ProblemFormulation }
 })
