@@ -19,7 +19,8 @@
         th(v-for='v in "Exposure Route,Dose,,Hazard Quotient,".split(",")')
       exposure-route(v-for='r in exposureRoutes', :params='params', v-model='params[r.symbol].value', :route='r')
 
-    h2 Combined ILCR: {{sum}}
+    h2 Combined ILCR
+      .total {{sum}}
 </template>
 
 <script>

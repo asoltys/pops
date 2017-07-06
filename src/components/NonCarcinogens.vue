@@ -23,7 +23,8 @@
         th(v-for='v in "Exposure Route,Dose,,Hazard Quotient,".split(",")')
       exposure-route(v-for='r in exposureRoutes', :params='params', v-model='params[r.symbol].value', :route='r')
 
-    h2 Combined HQ: {{sum}}
+    h2 Combined HQ
+      .total {{sum}}
 </template>
 
 <script>
@@ -96,3 +97,9 @@ export default {
   components: { ParamField, ValuesTable, Formula, ExposureRoute }
 }
 </script>
+
+<style scoped lang="stylus">
+  .total
+    font-size 36px
+    color black
+</style>
