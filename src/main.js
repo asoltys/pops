@@ -14,6 +14,6 @@ window.ProblemFormulation = ProblemFormulation
 
 new Vue({
   el: '#app',
-  template: '<Carcinogens/>',
-  components: { Carcinogens }
+  template: '<NonCarcinogens/>',
+  components: { NonCarcinogens }
 })

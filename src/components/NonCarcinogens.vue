@@ -3,10 +3,10 @@
     button(type='button', data-toggle='modal', data-target='.modal') Set Parameter Values
     button(type='button', @click="collapse") Show/Hide Formulae
 
-    values-table(:params='params', @update='update')
+    values-table(:params='params', @update='setParams')
 
     formula(v-model='params.CDIsi.value', :params='params', param='CDIsi', expression='(Csoil*EF*ED*IRs*RBA*0.000001) / (AT*BW)') Accidental Soil Ingestion Dose
-    formula(v-model='params.CDIinhal.value', :params='params', param='CDIinhal', expression='(Csoil*EF*ED*ET*((1/VFs)+(1/PEFw))/(AT))') Inhalation of Contaminated Particles Dose
+    formula(v-model='params.CDIinhal.value', :params='params', param='CDIinhal', expression='(Csoil*EF*ED*ET*((1/VF)+(1/PEF))/(AT))') Inhalation of Contaminated Particles Dose
     formula(v-model='params.CDIderm.value', :params='params', param='CDIderm', expression='(Csoil*EF*ED*SA*AF*ABSd*0.000001)/(AT*BW)') Dermal contact with contaminated soil Dose Calculation
     formula(v-model='params.CDIwater.value', :params='params', param='CDIwater', expression='(Cwater*0.001*EF*ED*IRw)/(AT*BW)') Water Ingestion Dose Calculation
     formula(v-model='params.CDIfish.value', :params='params', param='CDIfish', expression='(Cfish*EF*ED*IRfish*0.000001*CFfish)/(AT*BW)') Fish Ingestion Dose
@@ -21,7 +21,7 @@
     table.table
       tr
         th(v-for='v in "Exposure Route,Dose,,Hazard Quotient,".split(",")')
-      exposure-route(v-for='r in exposureRoutes', :params='params', v-model='params[r.symbol].value', :route='r', :value='params[r.symbol].value')
+      exposure-route(v-for='r in exposureRoutes', :params='params', v-model='params[r.symbol].value', :route='r')
 </template>
 
 <script>
@@ -56,7 +56,10 @@ export default {
     collapse () {
       $('.collapse').collapse('toggle')
     },
-    update (values) {
+    popover (e) {
+      this.$el.querySelector('#ValuesTable').modal()
+    },
+    setParams (values) {
       for (let v in values) {
         this.params[v].value = values[v]
       }

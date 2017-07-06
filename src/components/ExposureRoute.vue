@@ -18,7 +18,6 @@
         return this.route.symbol.match(/[A-Z]+|[a-z]+/g)[1]
       },
       result () {
-        console.log(this.params)
         let n = (this.route.divisor === undefined)
           ? this.params[this.route.multiplier].value
           : 1 / this.params[this.route.divisor].value
