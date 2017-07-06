@@ -11,20 +11,14 @@
 </template>
 
 <script>
-  import params from '../params'
-
   export default {
-    data () {
-      return {
-        params: params
-      }
-    },
-    props: ['route', 'value'],
+    props: ['route', 'value', 'params'],
     computed: {
       sub () {
         return this.route.symbol.match(/[A-Z]+|[a-z]+/g)[1]
       },
       result () {
+        console.log(this.params)
         let n = (this.route.divisor === undefined)
           ? this.params[this.route.multiplier].value
           : 1 / this.params[this.route.divisor].value

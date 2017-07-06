@@ -24,11 +24,10 @@ var devMiddleware = require('webpack-dev-middleware')(compiler, {
   stats: {
     colors: true,
     chunks: false
-  },
-  headers: { "Access-Control-Allow-Origin": "*" }
+  }
 })
 
-var hotMiddleware = require('webpack-hot-middleware')(compiler, { headers: { "Access-Control-Allow-Origin": "*" }})
+var hotMiddleware = require('webpack-hot-middleware')(compiler)
 // force page reload when html-webpack-plugin template changes
 compiler.plugin('compilation', function (compilation) {
   compilation.plugin('html-webpack-plugin-after-emit', function (data, cb) {

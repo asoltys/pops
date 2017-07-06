@@ -7,25 +7,23 @@
       div `{{param.split('').join(' ')}} = {{expression.split('').join(' ')}} = `
       input.result(ref='input', :value='result', @input='update($event.target.value)', :disabled='true')
       table
-        hqparam(v-for='(p,k) in subset()', :ref='k', :name='k', :param='p', v-model='theseparams[k]')
+        param-field(v-for='(p,k) in subset()', :ref='k', :name='k', :param='p', v-model='localparams[k]')
 </template>
 
 <script>
-  import hqparam from './hqparam'
+  import ParamField from './ParamField'
   import math from 'mathjs'
-  import params from '../params'
   
   export default {
-    props: ['param', 'expression', 'heading', 'value'],
+    props: ['param', 'params', 'expression', 'heading', 'value'],
     data () {
       return {
-        params: params,
-        theseparams: this.updateParams()
+        localparams: this.updateParams()
       }
     },
     computed: {
       result () {
-        let v = math.eval(this.expression, this.theseparams)
+        let v = math.eval(this.expression, this.localparams)
         if (!isNaN(v) && isFinite(v)) {
           return v.toExponential(2)
         }
@@ -44,10 +42,10 @@
           .filter(node => { return node.isSymbolNode })
           .map(x => x.name)
 
-        return Object.keys(params)
+        return Object.keys(this.params)
           .filter(key => list.includes(key))
           .reduce((obj, key) => {
-            obj[key] = params[key]
+            obj[key] = this.params[key]
             return obj
           }, {})
       },
@@ -65,12 +63,12 @@
         this.update(v)
       },
       compound () {
-        this.theseparams = this.updateParams()
-        Object.keys(this.theseparams).forEach(p => {
-          this.$refs[p][0].$refs.input.value = this.theseparams[p]
+        this.localparams = this.updateParams()
+        Object.keys(this.localparams).forEach(p => {
+          this.$refs[p][0].$refs.input.value = this.localparams[p]
         })
       }
     },
-    components: { hqparam }
+    components: { ParamField }
   }
 </script>

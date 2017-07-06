@@ -26,15 +26,14 @@
               tr
                 th(v-for='v in headers2') {{v}}
             tbody
-              tr(v-for='param in Object.keys(data)')
+              tr(v-for='param in Object.keys(params.data)')
                 td
                 td
                   abbr(:title='params[param].desc') {{param}}
-                td(v-for='v,i in data[param]' @click='update($event)', :class='{ odd: i % 2, highlight: i == col }' @mouseover='hover') {{v}}
+                td(v-for='v,i in params.data[param]' @click='update($event)', :class='{ odd: i % 2, highlight: i == col }' @mouseover='hover') {{v}}
 </template>
 
 <script>
-  import params from '../params'
   import chemicals from '../chemicals'
   import $ from 'jquery'
 
@@ -44,20 +43,19 @@
         headers1: ',,Residential,,Workers,,Recreator'.split(','),
         headers2: ',,Child,Adult,Outdoor,Construction,Child,Adult'.split(','),
         col: null,
-        params: params,
-        data: params.data,
         chemicals: chemicals,
         chemical: {}
       }
     },
+    props: ['params'],
     methods: {
       hover (e) {
         this.col = e.target.cellIndex - 2
       },
       update (e) {
         let values = {}
-        for (let key in this.data) {
-          values[key] = this.data[key][e.target.cellIndex - 2]
+        for (let key in this.params.data) {
+          values[key] = this.params.data[key][e.target.cellIndex - 2]
         }
         this.$emit('update', values)
         this.col = e.target.cellIndex - 2

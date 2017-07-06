@@ -2,7 +2,7 @@
   .problem-formulation
     button(@click='reset') Reset
 
-    h1 Risk Assessment Problem Formulation Worksheet Tool Squeeeeee
+    h1 Risk Assessment Problem Formulation Worksheet Tool
     p The purpose of this worksheet is to help the risk assessor identify the components of the risk assessment. Use this worksheet to think through all parts of the problem formulation (see the problem formulation training module). A filled-in version of this worksheet should be included in your Risk Assessment report.
 
     h2 Potential land uses of the site
