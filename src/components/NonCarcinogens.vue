@@ -22,6 +22,8 @@
       tr
         th(v-for='v in "Exposure Route,Dose,,Hazard Quotient,".split(",")')
       exposure-route(v-for='r in exposureRoutes', :params='params', v-model='params[r.symbol].value', :route='r')
+
+    h2 Combined HQ: {{sum}}
 </template>
 
 <script>
@@ -50,6 +52,12 @@ export default {
         { dose: 'produce ingestion', symbol: 'CDIprod', units: '(mg/kg-d)', divisor: 'TVoral' },
         { dose: 'beef ingestion', symbol: 'CDIbeef', units: '(mg/kg-d)', divisor: 'TVoral' }
       ]
+    },
+    sum () {
+      return Object.keys(this.params)
+        .filter(w => { return w.match(/^HQ/g) })
+        .reduce((a, b) => { return a + parseFloat(this.params[b].value) }, 0)
+        .toFixed(1)
     }
   },
   methods: {

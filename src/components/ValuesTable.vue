@@ -70,7 +70,7 @@
       }
     },
     mounted () {
-      this.$el.querySelectorAll('td')[2].click()
+      this.$el.querySelectorAll('td')[3].click()
       this.chemical = this.chemicals['Dioxins']['TCDD, 2,3,7,8-']
     }
   }
