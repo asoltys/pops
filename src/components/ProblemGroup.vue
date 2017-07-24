@@ -1,5 +1,5 @@
 <template lang="pug">
-  table.table.table-striped
+  table.table
     tr
       th
       th Potential

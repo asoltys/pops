@@ -38,7 +38,7 @@
       li For certain chemicals such as dioxins/furans or PCBs, use the TEF Calculator tool and enter the TEQ as the concentration value. 
       li The maximum contaminant concentration can then be compared to environmental quality guidelines. If the measured maximum concentration exceeds the guidelines, then the contaminant is a Contaminant of Concern.
 
-    table
+    table.table
       tr
         th
         th(v-for='c,i in cols') 

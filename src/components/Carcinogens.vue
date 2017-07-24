@@ -93,3 +93,9 @@ export default {
   components: { ParamField, ValuesTable, Formula, ExposureRoute }
 }
 </script>
+
+<style scoped lang="stylus">
+  .total
+    font-size 36px
+    color black
+</style>
