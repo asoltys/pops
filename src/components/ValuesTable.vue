@@ -1,5 +1,5 @@
 <template lang="pug">
-  .modal.fade
+  .modal.fade#values
     .modal-dialog
       .modal-content
         .modal-header

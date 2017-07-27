@@ -1,6 +1,6 @@
 <template lang="pug">
   div
-    button(type='button', data-toggle='modal', data-target='.modal') Set Parameter Values
+    button(type='button', data-toggle='modal', data-target='#values') Set Parameter Values
     button(type='button', @click="collapse") Show/Hide Formulae
 
     values-table(:params='params', @update='setParams')
