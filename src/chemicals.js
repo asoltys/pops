@@ -1,30 +1,8 @@
 export default {
-  'General': {
-    'Aldrin': { SFO: 17, IUR: 0.0049, PEF: 1360000000, VF: 1720000, RBA: 1, ABSd: null },
-    'Chlordane': { SFO: 0.35, IUR: 0.0001, PEF: 1360000000, VF: 1530000, RBA: 1, ABSd: 0.04 },
-    'Chlordecone (Kepone)': { SFO: 10, IUR: 0.0046, PEF: 1360000000, VF: null, RBA: 1, ABSd: 0.1 },
-    'DDD': { SFO: 0.24, IUR: 0.000069, PEF: 1360000000, VF: null, RBA: 1, ABSd: 0.1 },
-    'DDE, p,p\'-': { SFO: 0.34, IUR: 0.000097, PEF: 1360000000, VF: 2100000, RBA: 1, ABSd: null },
-    'DDT': { SFO: 0.34, IUR: 0.000097, PEF: 1360000000, VF: null, RBA: 1, ABSd: 0.03 },
-    'Dieldrin': { SFO: 16, IUR: 0.0046, PEF: 1360000000, VF: null, RBA: 1, ABSd: 0.1 }
-  },
-
   'Dioxins': {
     'Hexachlorodibenzo-p-dioxin, Mixture': { SFO: 6200, IUR: 1.3, PEF: 1360000000, VF: null, RBA: 1, ABSd: 0.03 },
     'TCDD, 2,3,7,8-': { SFO: 130000, IUR: 38, PEF: 1360000000, VF: 1960000, RBA: 1, ABSd: 0.03 },
-    'Endosulfan': { SFO: null, IUR: null, PEF: 1360000000, VF: 410000, RBA: 1, ABSd: null },
-    'Endrin': { SFO: null, IUR: null, PEF: 1360000000, VF: null, RBA: 1, ABSd: 0.1 },
-    'Heptachlor': { SFO: 4.5, IUR: 0.0013, PEF: 1360000000, VF: 479000, RBA: 1, ABSd: null },
-    'Heptachlor Epoxide': { SFO: 9.1, IUR: 0.0026, PEF: 1360000000, VF: 843000, RBA: 1, ABSd: null },
-    'Hexabromodiphenyl ether, 2,2\',4,4\',5,5\'- (BDE-153)': { SFO: null, IUR: null, PEF: 1360000000, VF: null, RBA: 1, ABSd: 0.1 },
-    'Hexachlorobenzene': { SFO: 1.6, IUR: 0.00046, PEF: 1360000000, VF: 68000, RBA: 1, ABSd: null },
-    'Hexachlorobutadiene': { SFO: 0.078, IUR: 0.000022, PEF: 1360000000, VF: 10800, RBA: 1, ABSd: null },
-    'Hexachlorocyclohexane, Alpha-': { SFO: 6.3, IUR: 0.0018, PEF: 1360000000, VF: null, RBA: 1, ABSd: 0.1 },
-    'Hexachlorocyclohexane, Beta-': { SFO: 1.8, IUR: 0.00053, PEF: 1360000000, VF: null, RBA: 1, ABSd: 0.1 },
-    'Hexachlorocyclohexane, Gamma- (Lindane)': { SFO: 1.1, IUR: 0.00031, PEF: 1360000000, VF: null, RBA: 1, ABSd: 0.04 },
-    'Mirex': { SFO: 18, IUR: 0.0051, PEF: 1360000000, VF: 858000, RBA: 1, ABSd: null },
-    'Pentachlorobenzene': { SFO: null, IUR: null, PEF: 1360000000, VF: 81200, RBA: 1, ABSd: null },
-    'Pentachlorophenol': { SFO: 0.4, IUR: 0.0000051, PEF: 1360000000, VF: null, RBA: 1, ABSd: 0.25 }
+    'TCDD, 2,3,7,8- TEQ': { SFO: null, IUR: 38, PEF: 1360000000, VF: 1960000, RBA: 1, ABSd: 0.03 }
   },
 
   'Polychlorinated Biphenyls (PCBs)': {
@@ -73,7 +51,30 @@ export default {
     'Methylnaphthalene, 2-': { SFO: null, IUR: null, PEF: 1360000000, VF: 58000, RBA: 1, ABSd: 0.13 },
     'Naphthalene': { SFO: null, IUR: 0.000034, PEF: 1360000000, VF: 46300, RBA: 1, ABSd: 0.13 },
     'Nitropyrene, 4-': { SFO: 1.2, IUR: 0.00011, PEF: 1360000000, VF: null, RBA: 1, ABSd: 0.13 },
-    'Pyrene': { SFO: null, IUR: null, PEF: 1360000000, VF: 2380000, RBA: 1, ABSd: 0.13 },
+    'Pyrene': { SFO: null, IUR: null, PEF: 1360000000, VF: 2380000, RBA: 1, ABSd: 0.13 }
+  },
+
+  'Other POPs': {
+    'Aldrin': { SFO: 17, IUR: 0.0049, PEF: 1360000000, VF: 1720000, RBA: 1, ABSd: null },
+    'Chlordane': { SFO: 0.35, IUR: 0.0001, PEF: 1360000000, VF: 1530000, RBA: 1, ABSd: 0.04 },
+    'Chlordecone (Kepone)': { SFO: 10, IUR: 0.0046, PEF: 1360000000, VF: null, RBA: 1, ABSd: 0.1 },
+    'DDD': { SFO: 0.24, IUR: 0.000069, PEF: 1360000000, VF: null, RBA: 1, ABSd: 0.1 },
+    'DDE, p,p\'-': { SFO: 0.34, IUR: 0.000097, PEF: 1360000000, VF: 2100000, RBA: 1, ABSd: null },
+    'DDT': { SFO: 0.34, IUR: 0.000097, PEF: 1360000000, VF: null, RBA: 1, ABSd: 0.03 },
+    'Dieldrin': { SFO: 16, IUR: 0.0046, PEF: 1360000000, VF: null, RBA: 1, ABSd: 0.1 },
+    'Endosulfan': { SFO: null, IUR: null, PEF: 1360000000, VF: 410000, RBA: 1, ABSd: null },
+    'Endrin': { SFO: null, IUR: null, PEF: 1360000000, VF: null, RBA: 1, ABSd: 0.1 },
+    'Heptachlor': { SFO: 4.5, IUR: 0.0013, PEF: 1360000000, VF: 479000, RBA: 1, ABSd: null },
+    'Heptachlor Epoxide': { SFO: 9.1, IUR: 0.0026, PEF: 1360000000, VF: 843000, RBA: 1, ABSd: null },
+    'Hexabromodiphenyl ether, 2,2\',4,4\',5,5\'- (BDE-153)': { SFO: null, IUR: null, PEF: 1360000000, VF: null, RBA: 1, ABSd: 0.1 },
+    'Hexachlorobenzene': { SFO: 1.6, IUR: 0.00046, PEF: 1360000000, VF: 68000, RBA: 1, ABSd: null },
+    'Hexachlorobutadiene': { SFO: 0.078, IUR: 0.000022, PEF: 1360000000, VF: 10800, RBA: 1, ABSd: null },
+    'Hexachlorocyclohexane, Alpha-': { SFO: 6.3, IUR: 0.0018, PEF: 1360000000, VF: null, RBA: 1, ABSd: 0.1 },
+    'Hexachlorocyclohexane, Beta-': { SFO: 1.8, IUR: 0.00053, PEF: 1360000000, VF: null, RBA: 1, ABSd: 0.1 },
+    'Hexachlorocyclohexane, Gamma- (Lindane)': { SFO: 1.1, IUR: 0.00031, PEF: 1360000000, VF: null, RBA: 1, ABSd: 0.04 },
+    'Mirex': { SFO: 18, IUR: 0.0051, PEF: 1360000000, VF: 858000, RBA: 1, ABSd: null },
+    'Pentachlorobenzene': { SFO: null, IUR: null, PEF: 1360000000, VF: 81200, RBA: 1, ABSd: null },
+    'Pentachlorophenol': { SFO: 0.4, IUR: 0.0000051, PEF: 1360000000, VF: null, RBA: 1, ABSd: 0.25 },
     'Tetrabromodiphenyl ether, 2,2\',4,4\'- (BDE-47)': { SFO: null, IUR: null, PEF: 1360000000, VF: null, RBA: 1, ABSd: 0.1 },
     'Toxaphene': { SFO: 1.1, IUR: 0.00032, PEF: 1360000000, VF: null, RBA: 1, ABSd: 0.1 }
   }
