@@ -11,12 +11,12 @@
     formula(v-model='params.CDIwater.value', :params='params', param='CDIwater', expression='(Cwater*0.001*EF*ED*IRwater)/(AT*BW)') Water Ingestion Dose Calculation
     formula(v-model='params.CDIfish.value', :params='params', param='CDIfish', expression='(Cfish*EF*ED*IRfish*0.000001*CFfish)/(AT*BW)') Fish Ingestion Dose
     formula(v-model='params.CDIprod.value', :params='params', param='CDIprod', expression='(Cprod*EF*ED*IRprod*0.000001*CFprod)/(AT*BW)') Produce Ingestion Dose
-    formula(v-model='params.CDIbeef.value', :params='params', param='CDIbeef', expression='(Cbeef*EF*ED*IRbeef*0.000001*CFbeef)/(AT*BW)') Beef Ingestion Dose
+    formula(v-model='params.CDIpltry.value', :params='params', param='CDIpltry', expression='(Cpltry*EF*ED*IRpltry*0.000001*CFpltry)/(AT*BW)') pltry Ingestion Dose
 
     h3 Hazard Quotient/Index
     table
-      param-field(name='TVoral', :param='params.TVoral', v-model='params.TVoral.value', :value='params.TVoral.value', :disabled='true')
-      param-field(name='TVinhal', :param='params.TVinhal', v-model='params.TVinhal.value', :value='params.TVinhal.value', :disabled='true')
+      param-field(name='TVoral', :param='params.TVoral', v-model='params.TVoral.value', :value='params.TVoral.value')
+      param-field(name='TVinhal', :param='params.TVinhal', v-model='params.TVinhal.value', :value='params.TVinhal.value')
 
     table.table
       tr
@@ -51,7 +51,7 @@ export default {
         { dose: 'water ingestion', symbol: 'CDIwater', units: '(mg/kg-d)', divisor: 'TVoral' },
         { dose: 'fish ingestion', symbol: 'CDIfish', units: '(mg/kg-d)', divisor: 'TVoral' },
         { dose: 'produce ingestion', symbol: 'CDIprod', units: '(mg/kg-d)', divisor: 'TVoral' },
-        { dose: 'beef ingestion', symbol: 'CDIbeef', units: '(mg/kg-d)', divisor: 'TVoral' }
+        { dose: 'poultry ingestion', symbol: 'CDIpltry', units: '(mg/kg-d)', divisor: 'TVoral' }
       ]
     },
     sum () {

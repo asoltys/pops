@@ -14,6 +14,10 @@
     formula(v-model='params.CDIpltry.value', :params='params', param='CDIpltry', expression='(Cpltry*IFpltry*0.000001*CFpltry)/(365*LT)') pltry Ingestion Dose
 
     h2 Hazard Quotient/Index
+    table
+      param-field(name='SFO', :param='params.SFO', v-model='params.SFO.value', :value='params.SFO.value')
+      param-field(name='IUR', :param='params.IUR', v-model='params.IUR.value', :value='params.IUR.value')
+
     table.table
       tr
         th(v-for='v in "Exposure Route,Dose,,Hazard Quotient,".split(",")')

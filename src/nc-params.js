@@ -33,8 +33,6 @@ export default {
   CFpltry: { value: 1, units: 'proportion', desc: 'contaminated fraction of poultry' },
   TVoral: { value: 0.0000000007, units: '', desc: '' },
   TVinhal: { value: 0.00000004, units: '', desc: '' },
-  SFO: { value: 130000, units: '', desc: 'slope factor oral' },
-  IUR: { value: 38, units: '', desc: 'inhalation unit risk' },
   HQsi: { value: null, units: 'mg/kg-d', desc: 'soil ingestion dose' },
   HQinhal: { value: null, units: 'mg/kg-d', desc: 'particulate inhalation dose' },
   HQderm: { value: null, units: 'mg/kg-d', desc: 'dermal contact with contaminated soil dose' },

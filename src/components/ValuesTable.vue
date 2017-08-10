@@ -14,10 +14,10 @@
 
           table.table
             tr
-              th(v-for='t in Object.keys(chemical)') 
+              th(v-for='t in Object.keys(chemical)', v-if='params[t]') 
                 abbr(:title='params[t].desc') {{t}}
             tr
-              td(v-for='t in Object.keys(chemical)') {{chemical[t]}}
+              td(v-for='t in Object.keys(chemical)', v-if='params[t]') {{chemical[t]}}
 
           table.table
             thead
