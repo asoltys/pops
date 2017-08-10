@@ -11,7 +11,7 @@
     formula(v-model='params.CDIwater.value', :params='params', param='CDIwater', expression='(Cwater*0.001*(IFwater))/(365*LT)') Water Ingestion Dose Calculation
     formula(v-model='params.CDIfish.value', :params='params', param='CDIfish', expression='(Cfish*IFfish*0.000001*CFfish)/(365*LT)') Fish Ingestion Dose
     formula(v-model='params.CDIprod.value', :params='params', param='CDIprod', expression='(Cprod*IFprod*0.000001*CFprod)/(365*LT)') Produce Ingestion Dose
-    formula(v-model='params.CDIpltry.value', :params='params', param='CDIpltry', expression='(Cpltry*IFpltry*0.000001*CFpltry)/(365*LT)') pltry Ingestion Dose
+    formula(v-model='params.CDIpltry.value', :params='params', param='CDIpltry', expression='(Cpltry*IFpltry*0.000001*CFpltry)/(365*LT)') Poultry Ingestion Dose
 
     h2 Incremental Lifetime Cancer Risk
     table
