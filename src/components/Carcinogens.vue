@@ -13,7 +13,7 @@
     formula(v-model='params.CDIprod.value', :params='params', param='CDIprod', expression='(Cprod*IFprod*0.000001*CFprod)/(365*LT)') Produce Ingestion Dose
     formula(v-model='params.CDIpltry.value', :params='params', param='CDIpltry', expression='(Cpltry*IFpltry*0.000001*CFpltry)/(365*LT)') pltry Ingestion Dose
 
-    h2 Hazard Quotient/Index
+    h2 Incremental Lifetime Cancer Risk
     table
       param-field(name='SFO', :param='params.SFO', v-model='params.SFO.value', :value='params.SFO.value')
       param-field(name='IUR', :param='params.IUR', v-model='params.IUR.value', :value='params.IUR.value')
@@ -23,8 +23,7 @@
         th(v-for='v in "Exposure Route,Dose,,Hazard Quotient,".split(",")')
       exposure-route(v-for='r in exposureRoutes', :params='params', v-model='params[r.symbol].value', :route='r')
 
-    h2 Combined ILCR
-      .total {{sum}}
+    h2 `ILCRt ot = sum ILCRs = ` {{sum}}
 </template>
 
 <script>
@@ -46,7 +45,7 @@ export default {
     exposureRoutes () {
       return [
         { dose: 'soil ingestion', symbol: 'CDIsi', units: '(mg/kg-d)', multiplier: 'SFO' },
-        { dose: 'particulate inhalation', symbol: 'CDIinhal', units: '(mg/kg-d)', multiplier: 'IUR' },
+        { dose: 'particulate inhalation', symbol: 'CDIinhal', units: '(mg/m3)', multiplier: 'IUR' },
         { dose: 'dermal contact', symbol: 'CDIderm', units: '(mg/kg-d)', multiplier: 'SFO' },
         { dose: 'water ingestion', symbol: 'CDIwater', units: '(mg/kg-d)', multiplier: 'SFO' },
         { dose: 'fish ingestion', symbol: 'CDIfish', units: '(mg/kg-d)', multiplier: 'SFO' },

@@ -2,10 +2,11 @@
   tr
     td {{route.dose}}
     td 
-    td {{route.symbol}} {{route.units}}
+    td {{route.symbol}} 
     td
-      input(ref='input' v-model='params[route.symbol].value', :disabled='true')
-    td {{output}}{{sub}}
+      input(ref='input' v-model='params[route.symbol].value', :disabled='true') 
+      | &nbsp; {{route.units}}
+      td `{{expression}}`
     td
       input(:disabled='true', v-model='result')
 </template>
@@ -28,11 +29,21 @@
       },
       output () {
         return (this.route.divisor === undefined) ? 'ILCR' : 'HQ'
+      },
+      expression () {
+        if (this.route.divisor) {
+          return `${this.output}${this.sub} = (${this.route.divisor})/(${this.route.symbol}) =`.split('').join(' ')
+        } else {
+          return `${this.output}${this.sub} = (${this.route.multiplier})*(${this.route.symbol}) =`.split('').join(' ')
+        }
       }
     },
     methods: {
       format (v) {
-        if (!isNaN(v) && isFinite(v)) return v.toExponential(2)
+        if (!isNaN(v) && isFinite(v)) {
+          if (this.output === 'HQ') return v.toFixed(1)
+          return v.toExponential(2)
+        }
         return ''
       }
     }

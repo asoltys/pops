@@ -6,12 +6,12 @@
     values-table(:params='params', @update='setParams')
 
     formula(v-model='params.CDIsi.value', :params='params', param='CDIsi', expression='(Csoil*EF*ED*IRs*RBA*0.000001) / (AT*BW)') Accidental Soil Ingestion Dose
-    formula(v-model='params.CDIinhal.value', :params='params', param='CDIinhal', expression='(Csoil*EF*ED*ET*((1/VF)+(1/PEF))/(AT))') Inhalation of Contaminated Particles Dose
+    formula(v-model='params.CDIinhal.value', :params='params', param='CDIinhal', expression='(Csoil*EF*ED*ET*((1/(VF))+(1/(PEF)))/(AT))') Inhalation of Contaminated Particles Dose
     formula(v-model='params.CDIderm.value', :params='params', param='CDIderm', expression='(Csoil*EF*ED*SA*AF*ABSd*0.000001)/(AT*BW)') Dermal contact with contaminated soil Dose Calculation
     formula(v-model='params.CDIwater.value', :params='params', param='CDIwater', expression='(Cwater*0.001*EF*ED*IRwater)/(AT*BW)') Water Ingestion Dose Calculation
     formula(v-model='params.CDIfish.value', :params='params', param='CDIfish', expression='(Cfish*EF*ED*IRfish*0.000001*CFfish)/(AT*BW)') Fish Ingestion Dose
     formula(v-model='params.CDIprod.value', :params='params', param='CDIprod', expression='(Cprod*EF*ED*IRprod*0.000001*CFprod)/(AT*BW)') Produce Ingestion Dose
-    formula(v-model='params.CDIpltry.value', :params='params', param='CDIpltry', expression='(Cpltry*EF*ED*IRpltry*0.000001*CFpltry)/(AT*BW)') pltry Ingestion Dose
+    formula(v-model='params.CDIpltry.value', :params='params', param='CDIpltry', expression='(Cpltry*EF*ED*IRpltry*0.000001*CFpltry)/(AT*BW)') Poultry Ingestion Dose
 
     h3 Hazard Quotient/Index
     table
@@ -23,8 +23,7 @@
         th(v-for='v in "Exposure Route,Dose,,Hazard Quotient,".split(",")')
       exposure-route(v-for='r in exposureRoutes', :params='params', v-model='params[r.symbol].value', :route='r')
 
-    h2 Combined HQ
-      .total {{sum}}
+    h2 `HI = sum HQs = ` {{sum}}
 </template>
 
 <script>
@@ -46,7 +45,7 @@ export default {
     exposureRoutes () {
       return [
         { dose: 'soil ingestion', symbol: 'CDIsi', units: '(mg/kg-d)', divisor: 'TVoral' },
-        { dose: 'particulate inhalation', symbol: 'CDIinhal', units: '(mg/kg-d)', divisor: 'TVinhal' },
+        { dose: 'particulate inhalation', symbol: 'CDIinhal', units: '(mg/m3)', divisor: 'TVinhal' },
         { dose: 'dermal contact', symbol: 'CDIderm', units: '(mg/kg-d)', divisor: 'TVoral' },
         { dose: 'water ingestion', symbol: 'CDIwater', units: '(mg/kg-d)', divisor: 'TVoral' },
         { dose: 'fish ingestion', symbol: 'CDIfish', units: '(mg/kg-d)', divisor: 'TVoral' },

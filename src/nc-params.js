@@ -1,6 +1,6 @@
 export default {
   CDIsi: { value: null, units: 'mg/kg-d', desc: 'soil ingestion dose' },
-  CDIinhal: { value: null, units: 'mg/kg-d', desc: 'particulate inhalation dose' },
+  CDIinhal: { value: null, units: 'mg/m3', desc: 'particulate inhalation dose' },
   CDIderm: { value: null, units: 'mg/kg-d', desc: 'dermal contact with contaminated soil dose' },
   CDIwater: { value: null, units: 'mg/kg-d', desc: 'water ingestion dose' },
   CDIfish: { value: null, units: 'mg/kg-d', desc: 'fish ingestion dose' },
