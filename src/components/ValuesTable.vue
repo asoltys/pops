@@ -24,13 +24,18 @@
               tr
                 th(v-for='v in headers1') {{v}}
               tr
-                th(v-for='v in headers2') {{v}}
+                th(v-for='v in headers2', @click='update($event)') 
+                  | {{v}}
+                  button.btn.btn-primary(v-if='v') choose
             tbody
               tr(v-for='param in Object.keys(params.data)')
                 td
                 td
                   abbr(:title='params[param].desc') {{param}}
                 td(v-for='v,i in params.data[param]' @click='update($event)', :class='{ odd: i % 2, highlight: i == col }' @mouseover='hover') {{v}}
+          
+        .modal-footer
+          button.btn.btn-danger(data-dismiss='modal') Cancel
 </template>
 
 <script>
@@ -44,7 +49,8 @@
         headers2: ',,Child,Adult,Outdoor,Construction,Child,Adult'.split(','),
         col: null,
         chemicals: chemicals,
-        chemical: {}
+        chemical: {},
+        firstRun: true
       }
     },
     props: ['params'],
@@ -53,13 +59,20 @@
         this.col = e.target.cellIndex - 2
       },
       update (e) {
-        let values = {}
-        for (let key in this.params.data) {
-          values[key] = this.params.data[key][e.target.cellIndex - 2]
+        if (this.firstRun || window.confirm('Overwrite existing parameter values?')) {
+          let target = e.target
+          if (!target.cellIndex) target = target.parentElement
+          let values = {}
+          for (let key in this.params.data) {
+            values[key] = this.params.data[key][target.cellIndex - 2]
+          }
+          this.$emit('update', values)
+          this.col = target.cellIndex - 2
+          $('.modal').modal('hide')
+          this.params.profile = `${this.headers1[target.cellIndex - target.cellIndex % 2]} - ${this.headers2[target.cellIndex]}`
         }
-        this.$emit('update', values)
-        this.col = e.target.cellIndex - 2
-        $('.modal').modal('hide')
+
+        this.firstRun = false
       },
       setChemical () {
         Object.keys(this.chemical).forEach(c => {
@@ -85,5 +98,9 @@
 
   abbr
     text-decoration none
+
+  .btn-primary
+    padding 1px 4px 1px 4px
+    display block
 </style>
   

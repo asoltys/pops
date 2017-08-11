@@ -1,7 +1,10 @@
 <template lang="pug">
   div
-    button(type='button', data-toggle='modal', data-target='#values') Set Parameter Values
+    button.btn.btn-primary(type='button', data-toggle='modal', data-target='#values') Set Parameter Values
+    button.btn.btn-danger(type='button', @click="clear") Clear Parameter Values
     button(type='button', @click="collapse") Show/Hide Formulae
+
+    h2 Receptor Profile: {{params.profile}}
 
     values-table(:params='params', @update='setParams')
 
@@ -82,6 +85,15 @@ export default {
           left: offset.left + width
         })
       })
+    },
+    clear () {
+      if (window.confirm('Are you sure you want to clear all parameter values?')) {
+        Object.keys(this.params).forEach(k => {
+          if (this.params[k].value) {
+            this.params[k].value = ''
+          }
+        })
+      }
     }
   },
   mounted () {

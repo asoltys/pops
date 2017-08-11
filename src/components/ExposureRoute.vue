@@ -32,9 +32,9 @@
       },
       expression () {
         if (this.route.divisor) {
-          return `${this.output}${this.sub} = (${this.route.divisor})/(${this.route.symbol}) =`.split('').join(' ')
+          return `${this.output}${this.sub} = (${this.route.divisor}) / (${this.route.symbol}) =`.split('').join(' ')
         } else {
-          return `${this.output}${this.sub} = (${this.route.multiplier})*(${this.route.symbol}) =`.split('').join(' ')
+          return `${this.output}${this.sub} = ${this.route.multiplier} * ${this.route.symbol} =`.split('').join(' ')
         }
       }
     },
