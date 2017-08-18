@@ -1,6 +1,6 @@
 export default {
   CDIsi: { value: null, units: 'mg/kg-d', desc: 'soil ingestion dose' },
-  CDIinhal: { value: null, units: 'mg/m3', desc: 'particulate inhalation dose' },
+  CDIinhal: { value: null, units: 'ug/m3', desc: 'particulate inhalation dose' },
   CDIderm: { value: null, units: 'mg/kg-d', desc: 'dermal contact with contaminated soil dose' },
   CDIwater: { value: null, units: 'mg/kg-d', desc: 'water ingestion dose' },
   CDIfish: { value: null, units: 'mg/kg-d', desc: 'fish ingestion dose' },
@@ -30,8 +30,8 @@ export default {
   CFfish: { value: 1, units: 'proportion', desc: 'contaminated fraction of fish' },
   CFprod: { value: 1, units: 'proportion', desc: 'contaminated fraction of produce' },
   CFpltry: { value: 1, units: 'proportion', desc: 'contaminated fraction of poultry' },
-  SFO: { value: 130000, units: '', desc: 'Slope factor oral' },
-  IUR: { value: 38, units: '', desc: 'Inhalation unit risk' },
+  SFO: { value: 130000, units: '(mg/kg-d)^-1', desc: 'Slope factor oral' },
+  IUR: { value: 38, units: '(mg/kg-d)^-1', desc: 'Inhalation unit risk' },
   ILCRsi: { value: null, units: 'mg/kg-d', desc: 'soil ingestion dose' },
   ILCRinhal: { value: null, units: 'mg/kg-d', desc: 'particulate inhalation dose' },
   ILCRderm: { value: null, units: 'mg/kg-d', desc: 'dermal contact with contaminated soil dose' },
