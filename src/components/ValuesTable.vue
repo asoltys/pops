@@ -8,7 +8,7 @@
           h4 Set Parameter Values
         .modal-body
           label(for='chemical') Chemical: &nbsp;
-          select(v-model='chemical', @change='setChemical')
+          select(v-model='chemical', @change='setChemical($event.target)')
             optgroup(v-for='g in Object.keys(chemicals)' :label='g')
               option(v-for='c in Object.keys(chemicals[g])' :value='chemicals[g][c]') {{c}}
 
@@ -74,7 +74,8 @@
 
         this.firstRun = false
       },
-      setChemical () {
+      setChemical (target) {
+        this.params.chemical = target.options[target.selectedIndex].value
         Object.keys(this.chemical).forEach(c => {
           if (this.params[c]) {
             this.params[c].value = this.chemical[c]
@@ -84,7 +85,7 @@
     },
     mounted () {
       this.$el.querySelectorAll('td')[3].click()
-      this.chemical = this.chemicals['Dioxins']['TCDD, 2,3,7,8-']
+      this.chemical = this.chemicals['Dioxins'][this.params.chemical]
     }
   }
 </script>

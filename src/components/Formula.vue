@@ -5,7 +5,9 @@
         slot
     div.panel-collapse.collapse.in(:id='param')
       div `{{param.split('').join(' ')}} = {{expression.split('').join(' ')}} = `
-      input.result(ref='input', :value='result', @input='update($event.target.value)', :disabled='true')
+      span.result
+        input(ref='input', :value='result', @input='update($event.target.value)', :disabled='true')
+        span.units {{params[param].units}}
       table
         param-field(v-for='(p,k) in subset()', :ref='k', :name='k', :param='p', v-model='localparams[k]')
 </template>
@@ -72,3 +74,8 @@
     components: { ParamField }
   }
 </script>
+
+<style lang="stylus">
+  .units
+    margin-left 10px
+</style>

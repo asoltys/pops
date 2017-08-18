@@ -4,7 +4,7 @@
     button.btn.btn-danger(type='button', @click="clear") Clear Parameter Values
     button(type='button', @click="collapse") Show/Hide Formulae
 
-    h2 Receptor Profile: {{params.profile}}
+    h2 Receptor Profile: {{params.profile}} - {{params.chemical}}
 
     values-table(:params='params', @update='setParams')
 

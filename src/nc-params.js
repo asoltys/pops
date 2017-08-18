@@ -52,7 +52,8 @@ export default {
     LT: [70, 70, 70, 70, 70, 70],
     IRfish: [19500, 54000],
     IRprod: [109800, 302500],
-    IRpltry: [40100, 178000],
+    IRpltry: [11550, 61600],
     IRwater: [0.78, 2.5, null, null, 0.12, 0.071]
-  }
+  },
+  chemical: 'TCDD, 2,3,7,8-'
 }
