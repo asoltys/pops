@@ -10,7 +10,7 @@
           label(for='chemical') Chemical: &nbsp;
           select(v-model='chemical', @change='setChemical($event.target)')
             optgroup(v-for='g in Object.keys(chemicals)' :label='g')
-              option(v-for='c in Object.keys(chemicals[g])' :value='chemicals[g][c]') {{c}}
+              option(v-for='c in Object.keys(chemicals[g])' :value='chemicals[g][c]' :label='c') {{c}}
 
           table.table
             tr
@@ -50,6 +50,7 @@
         col: null,
         chemicals: chemicals,
         chemical: {},
+        chemicalName: '',
         firstRun: true
       }
     },
@@ -75,6 +76,7 @@
         this.firstRun = false
       },
       setChemical (target) {
+        this.params.chemicalName = target.options[target.selectedIndex].text
         this.params.chemical = target.options[target.selectedIndex].value
         Object.keys(this.chemical).forEach(c => {
           if (this.params[c]) {
@@ -85,7 +87,8 @@
     },
     mounted () {
       this.$el.querySelectorAll('td')[3].click()
-      this.chemical = this.chemicals['Dioxins'][this.params.chemical]
+      this.chemical = this.chemicals['Dioxins'][this.params.chemicalName]
+      this.chemicalName = this.params.chemicalName
     }
   }
 </script>

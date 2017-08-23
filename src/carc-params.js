@@ -52,5 +52,6 @@ export default {
     IFprod: [60368875, 60368875],
     IFpltry: [10780000, 10780000]
   },
-  chemical: 'TCDD, 2,3,7,8-'
+  chemical: { },
+  chemicalName: 'TCDD, 2,3,7,8-'
 }
