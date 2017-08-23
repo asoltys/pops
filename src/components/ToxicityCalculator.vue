@@ -57,8 +57,9 @@ export default {
       window.localStorage.setItem('chemicals', JSON.stringify(this.chemicals))
     },
     reset () {
-      window.localStorage.setItem('chemicals', '{}')
-      this.chemicals = JSON.parse(JSON.stringify(this.original))
+      let originalJson = JSON.stringify(this.original)
+      this.chemicals = JSON.parse(originalJson)
+      window.localStorage.setItem('chemicals', originalJson)
     }
   },
   mounted () {
