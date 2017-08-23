@@ -18,9 +18,9 @@
             button.btn.btn-danger(@click='chemicals[group].splice(i, 1) && save()') x
           td {{chemical['Chemical']}}
           td
-            input(v-model='chemical["Concentration"]', @input='save')
+            input(v-model='chemical["Concentration"]', @input='save(chemical)')
           td {{chemical['TEF']}}
-          td {{Math.round(chemical['TEF'] * chemical['Concentration'] * 1000000) / 1000000}}
+          td {{chemical['TEQ']}}
       tfoot
         tr
           td(colspan='4') SUM TEQ
@@ -53,7 +53,10 @@ export default {
     }
   },
   methods: {
-    save () {
+    save (chemical) {
+      if (chemical) {
+        chemical['TEQ'] = Math.round(chemical['TEF'] * chemical['Concentration'] * 1000000) / 1000000
+      }
       window.localStorage.setItem('chemicals', JSON.stringify(this.chemicals))
     },
     reset () {
