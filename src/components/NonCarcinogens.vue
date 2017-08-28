@@ -2,9 +2,12 @@
   div
     button.btn.btn-primary(type='button', data-toggle='modal', data-target='#values') Set Parameter Values
     button.btn.btn-danger(type='button', @click="clear") Clear Parameter Values
-    button(type='button', @click="collapse") Show/Hide Formulae
+    button.btn(type='button', @click="collapse") Show/Hide Formulae
 
-    h2 Receptor Profile: {{params.profile}} - {{params.chemical}}
+    h2 
+      span Receptor Profile: {{params.profile}}
+      br
+      span Chemical: {{params.chemicalName}}
 
     values-table(:params='params', @update='setParams')
 
